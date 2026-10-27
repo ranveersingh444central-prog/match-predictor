@@ -169,7 +169,7 @@ export const Footer: React.FC<FooterProps> = ({ activeSport = 'football', onSele
                 <li>Strict Chronological Partitions</li>
                 <li>Zero-Leakage Rolling Windows</li>
                 <li>Anti-Symmetric Differentials</li>
-                <li>UFC Cutoff: March 20, 2021</li>
+                <li>UFC Cutoff: October 24, 2026</li>
                 <li>Brier Score Calibration</li>
               </ul>
             </div>

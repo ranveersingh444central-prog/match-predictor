@@ -119,7 +119,7 @@ export const UFCOverview: React.FC<UFCOverviewProps> = ({ onNavigate }) => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Clock size={16} color="var(--accent-warm-gold)" />
           <span style={{ fontSize: '13px', color: 'var(--text-ivory)' }}>
-            <strong>Historical Combat Archive:</strong> Powered by official UFC records from March 11, 1994 to <strong>March 20, 2021</strong>.
+            <strong>Historical Combat Archive:</strong> Powered by official UFC records from March 11, 1994 to <strong>{status?.dataset_cutoff || 'October 24, 2026'}</strong>.
           </span>
         </div>
         <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-warm-gold)', padding: '2px 8px', background: 'rgba(194, 166, 118, 0.15)', borderRadius: '4px' }}>
@@ -152,7 +152,7 @@ export const UFCOverview: React.FC<UFCOverviewProps> = ({ onNavigate }) => {
           Mathematical probability meets the unpredictable nature of combat.
         </h1>
         <p style={{ fontSize: '17px', color: 'var(--text-sage)', maxWidth: '780px', lineHeight: '1.6' }}>
-          PITCHIQ Combat Intelligence analyzes 6,000+ historical bouts and 3,500+ athlete profiles across 11 weight divisions. 
+          PITCHIQ Combat Intelligence analyzes {status ? status.total_bouts.toLocaleString() : '8,900+'} historical bouts and {status ? status.total_athletes.toLocaleString() : '4,600+'} athlete profiles across 10 official weight divisions. 
           Features date-aware pre-fight differential modeling, Tale of the Tape comparisons, and finish-method breakdowns.
         </p>
       </div>
@@ -172,7 +172,7 @@ export const UFCOverview: React.FC<UFCOverviewProps> = ({ onNavigate }) => {
             {status?.total_bouts.toLocaleString()}
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>
-            1994 – March 2021
+            1994 – October 2026
           </div>
         </div>
 

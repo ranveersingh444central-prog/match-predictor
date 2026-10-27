@@ -84,9 +84,9 @@ class UFCService:
             except Exception:
                 pass
 
-        total_bouts = 6011
-        total_athletes = 3596
-        date_range = ["1994-03-11", "2021-03-20"]
+        total_bouts = 8961
+        total_athletes = 4620
+        date_range = ["1994-03-11", "2026-10-24"]
 
         if fights_ready:
             try:
@@ -445,11 +445,16 @@ class UFCService:
         timestamp = datetime.utcnow().isoformat() + "Z"
 
         # Explicit transparency disclaimer
+        cutoff_date = "2026-10-24"
+        if self._fights_df is not None and not self._fights_df.empty:
+            cutoff_date = self._fights_df["date"].max().strftime("%Y-%m-%d")
+
         disclaimer = (
             "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight "
-            "differentials and historical bout records (1994 to March 20, 2021). They are not financial advice "
+            f"differentials and historical bout records (1994 to {cutoff_date}). They are not financial advice "
             "or guarantees of sporting victory."
         )
+
 
         response = {
             "prediction_id": pred_id,

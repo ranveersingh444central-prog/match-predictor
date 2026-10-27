@@ -114,12 +114,13 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Clock size={16} color="var(--accent-warm-gold)" />
           <span style={{ fontSize: '13px', color: 'var(--text-ivory)' }}>
-            <strong>Historical Combat Archive:</strong> 6,011 validated bouts spanning March 11, 1994 (UFC 2) to <strong>March 20, 2021</strong> (UFC on ESPN: Brunson vs. Holland).
+            <strong>Historical Combat Archive:</strong> {total > 0 ? total.toLocaleString() : '8,961'} validated bouts spanning March 11, 1994 (UFC 2) to <strong>October 24, 2026</strong> (UFC 308: Topuria vs. Holloway).
           </span>
         </div>
         <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-warm-gold)', padding: '2px 8px', background: 'rgba(194, 166, 118, 0.15)', borderRadius: '4px' }}>
-          6,011 Records
+          {total > 0 ? total.toLocaleString() : '8,961'} Records
         </span>
+
       </div>
 
       {/* Editorial Header */}

@@ -1888,5 +1888,389 @@
       }
     ],
     "disclaimer": "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight differentials and historical bout records (1994 to March 20, 2021). They are not financial advice or guarantees of sporting victory."
+  },
+  {
+    "prediction_id": "ufc_pred_915b4f3f2582",
+    "timestamp": "2026-10-27T20:08:12.662398Z",
+    "sport": "ufc_mma",
+    "model_version": "ufc_v1.1",
+    "predicted_winner": "Jon Jones",
+    "confidence_level": "High Edge",
+    "probabilities": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "corner": "Red",
+        "probability": 0.7599,
+        "probability_percent": "76.0%",
+        "fair_decimal_odds": 1.32
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "corner": "Blue",
+        "probability": 0.2401,
+        "probability_percent": "24.0%",
+        "fair_decimal_odds": 4.16
+      }
+    },
+    "probabilities_sum_check": 1.0,
+    "method_probabilities": {
+      "Decision": 0.238,
+      "KO/TKO": 0.664,
+      "Submission": 0.099
+    },
+    "tale_of_the_tape": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "height_inches": 76.0,
+        "height_cm": 193.0,
+        "reach_inches": 84.0,
+        "reach_cm": 213.4,
+        "weight_lbs": 248.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 24,
+        "prior_ufc_wins": 22,
+        "slpm": 4.38,
+        "sapm": 2.24,
+        "strike_acc_pct": 58.9,
+        "strike_def_pct": 64.1,
+        "takedown_avg_15m": 1.89,
+        "takedown_def_pct": 95.0
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "height_inches": 71.0,
+        "height_cm": 180.3,
+        "reach_inches": 72.0,
+        "reach_cm": 182.9,
+        "weight_lbs": 235.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 15,
+        "prior_ufc_wins": 11,
+        "slpm": 4.39,
+        "sapm": 3.51,
+        "strike_acc_pct": 54.7,
+        "strike_def_pct": 50.5,
+        "takedown_avg_15m": 1.66,
+        "takedown_def_pct": 76.5
+      }
+    },
+    "data_quality": {
+      "status": "Verified Historical Data",
+      "score": 95,
+      "evaluation_date": "2026-10-28",
+      "reach_recorded": true,
+      "is_title_bout": false
+    },
+    "influential_factors": [
+      {
+        "factor": "Reach Advantage",
+        "advantage_fighter": "Jon Jones",
+        "differential": "12.0 in"
+      },
+      {
+        "factor": "Takedown Defense Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "18.5%"
+      },
+      {
+        "factor": "Youth / Age Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "8.3 years younger"
+      },
+      {
+        "factor": "Momentum / Win Streak",
+        "advantage_fighter": "Jon Jones",
+        "differential": "6 fight streak diff"
+      }
+    ],
+    "disclaimer": "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight differentials and historical bout records (1994 to March 20, 2021). They are not financial advice or guarantees of sporting victory."
+  },
+  {
+    "prediction_id": "ufc_pred_865c02f1ea3e",
+    "timestamp": "2026-10-27T20:12:11.804683Z",
+    "sport": "ufc_mma",
+    "model_version": "ufc_v1.1",
+    "predicted_winner": "Jon Jones",
+    "confidence_level": "High Edge",
+    "probabilities": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "corner": "Red",
+        "probability": 0.7599,
+        "probability_percent": "76.0%",
+        "fair_decimal_odds": 1.32
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "corner": "Blue",
+        "probability": 0.2401,
+        "probability_percent": "24.0%",
+        "fair_decimal_odds": 4.16
+      }
+    },
+    "probabilities_sum_check": 1.0,
+    "method_probabilities": {
+      "Decision": 0.238,
+      "KO/TKO": 0.664,
+      "Submission": 0.099
+    },
+    "tale_of_the_tape": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "height_inches": 76.0,
+        "height_cm": 193.0,
+        "reach_inches": 84.0,
+        "reach_cm": 213.4,
+        "weight_lbs": 248.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 24,
+        "prior_ufc_wins": 22,
+        "slpm": 4.38,
+        "sapm": 2.24,
+        "strike_acc_pct": 58.9,
+        "strike_def_pct": 64.1,
+        "takedown_avg_15m": 1.89,
+        "takedown_def_pct": 95.0
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "height_inches": 71.0,
+        "height_cm": 180.3,
+        "reach_inches": 72.0,
+        "reach_cm": 182.9,
+        "weight_lbs": 235.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 15,
+        "prior_ufc_wins": 11,
+        "slpm": 4.39,
+        "sapm": 3.51,
+        "strike_acc_pct": 54.7,
+        "strike_def_pct": 50.5,
+        "takedown_avg_15m": 1.66,
+        "takedown_def_pct": 76.5
+      }
+    },
+    "data_quality": {
+      "status": "Verified Historical Data",
+      "score": 95,
+      "evaluation_date": "2026-10-28",
+      "reach_recorded": true,
+      "is_title_bout": false
+    },
+    "influential_factors": [
+      {
+        "factor": "Reach Advantage",
+        "advantage_fighter": "Jon Jones",
+        "differential": "12.0 in"
+      },
+      {
+        "factor": "Takedown Defense Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "18.5%"
+      },
+      {
+        "factor": "Youth / Age Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "8.3 years younger"
+      },
+      {
+        "factor": "Momentum / Win Streak",
+        "advantage_fighter": "Jon Jones",
+        "differential": "6 fight streak diff"
+      }
+    ],
+    "disclaimer": "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight differentials and historical bout records (1994 to March 20, 2021). They are not financial advice or guarantees of sporting victory."
+  },
+  {
+    "prediction_id": "ufc_pred_bb9b13ea2334",
+    "timestamp": "2026-10-27T20:12:29.544329Z",
+    "sport": "ufc_mma",
+    "model_version": "ufc_v1.1",
+    "predicted_winner": "Jon Jones",
+    "confidence_level": "High Edge",
+    "probabilities": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "corner": "Red",
+        "probability": 0.7599,
+        "probability_percent": "76.0%",
+        "fair_decimal_odds": 1.32
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "corner": "Blue",
+        "probability": 0.2401,
+        "probability_percent": "24.0%",
+        "fair_decimal_odds": 4.16
+      }
+    },
+    "probabilities_sum_check": 1.0,
+    "method_probabilities": {
+      "Decision": 0.238,
+      "KO/TKO": 0.664,
+      "Submission": 0.099
+    },
+    "tale_of_the_tape": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "height_inches": 76.0,
+        "height_cm": 193.0,
+        "reach_inches": 84.0,
+        "reach_cm": 213.4,
+        "weight_lbs": 248.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 24,
+        "prior_ufc_wins": 22,
+        "slpm": 4.38,
+        "sapm": 2.24,
+        "strike_acc_pct": 58.9,
+        "strike_def_pct": 64.1,
+        "takedown_avg_15m": 1.89,
+        "takedown_def_pct": 95.0
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "height_inches": 71.0,
+        "height_cm": 180.3,
+        "reach_inches": 72.0,
+        "reach_cm": 182.9,
+        "weight_lbs": 235.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 15,
+        "prior_ufc_wins": 11,
+        "slpm": 4.39,
+        "sapm": 3.51,
+        "strike_acc_pct": 54.7,
+        "strike_def_pct": 50.5,
+        "takedown_avg_15m": 1.66,
+        "takedown_def_pct": 76.5
+      }
+    },
+    "data_quality": {
+      "status": "Verified Historical Data",
+      "score": 95,
+      "evaluation_date": "2026-10-28",
+      "reach_recorded": true,
+      "is_title_bout": false
+    },
+    "influential_factors": [
+      {
+        "factor": "Reach Advantage",
+        "advantage_fighter": "Jon Jones",
+        "differential": "12.0 in"
+      },
+      {
+        "factor": "Takedown Defense Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "18.5%"
+      },
+      {
+        "factor": "Youth / Age Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "8.3 years younger"
+      },
+      {
+        "factor": "Momentum / Win Streak",
+        "advantage_fighter": "Jon Jones",
+        "differential": "6 fight streak diff"
+      }
+    ],
+    "disclaimer": "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight differentials and historical bout records (1994 to 2026-10-24). They are not financial advice or guarantees of sporting victory."
+  },
+  {
+    "prediction_id": "ufc_pred_6e7c22ba36bf",
+    "timestamp": "2026-10-27T20:13:22.948331Z",
+    "sport": "ufc_mma",
+    "model_version": "ufc_v1.1",
+    "predicted_winner": "Jon Jones",
+    "confidence_level": "High Edge",
+    "probabilities": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "corner": "Red",
+        "probability": 0.7768,
+        "probability_percent": "77.7%",
+        "fair_decimal_odds": 1.29
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "corner": "Blue",
+        "probability": 0.2232,
+        "probability_percent": "22.3%",
+        "fair_decimal_odds": 4.48
+      }
+    },
+    "probabilities_sum_check": 1.0,
+    "method_probabilities": {
+      "Decision": 0.208,
+      "KO/TKO": 0.676,
+      "Submission": 0.116
+    },
+    "tale_of_the_tape": {
+      "fighter_a": {
+        "name": "Jon Jones",
+        "height_inches": 76.0,
+        "height_cm": 193.0,
+        "reach_inches": 84.0,
+        "reach_cm": 213.4,
+        "weight_lbs": 248.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 24,
+        "prior_ufc_wins": 22,
+        "slpm": 4.38,
+        "sapm": 2.24,
+        "strike_acc_pct": 58.9,
+        "strike_def_pct": 64.1,
+        "takedown_avg_15m": 1.89,
+        "takedown_def_pct": 95.0
+      },
+      "fighter_b": {
+        "name": "Daniel Cormier",
+        "height_inches": 71.0,
+        "height_cm": 180.3,
+        "reach_inches": 72.0,
+        "reach_cm": 182.9,
+        "weight_lbs": 235.0,
+        "stance": "Orthodox",
+        "prior_ufc_fights": 15,
+        "prior_ufc_wins": 11,
+        "slpm": 4.39,
+        "sapm": 3.51,
+        "strike_acc_pct": 54.7,
+        "strike_def_pct": 50.5,
+        "takedown_avg_15m": 1.66,
+        "takedown_def_pct": 76.5
+      }
+    },
+    "data_quality": {
+      "status": "Verified Historical Data",
+      "score": 95,
+      "evaluation_date": "2026-10-28",
+      "reach_recorded": true,
+      "is_title_bout": true
+    },
+    "influential_factors": [
+      {
+        "factor": "Reach Advantage",
+        "advantage_fighter": "Jon Jones",
+        "differential": "12.0 in"
+      },
+      {
+        "factor": "Takedown Defense Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "18.5%"
+      },
+      {
+        "factor": "Youth / Age Differential",
+        "advantage_fighter": "Jon Jones",
+        "differential": "8.3 years younger"
+      },
+      {
+        "factor": "Momentum / Win Streak",
+        "advantage_fighter": "Jon Jones",
+        "differential": "6 fight streak diff"
+      }
+    ],
+    "disclaimer": "PITCHIQ UFC predictions are probabilistic machine-learning estimates based on pre-fight differentials and historical bout records (1994 to 2026-10-24). They are not financial advice or guarantees of sporting victory."
   }
 ]

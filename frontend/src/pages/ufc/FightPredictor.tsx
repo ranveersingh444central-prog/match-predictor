@@ -29,7 +29,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
   const [fighterA, setFighterA] = useState<string>('Jon Jones');
   const [fighterB, setFighterB] = useState<string>('Daniel Cormier');
   const [isTitleBout, setIsTitleBout] = useState<boolean>(true);
-  const [targetDate, setTargetDate] = useState<string>('2021-03-20');
+  const [targetDate, setTargetDate] = useState<string>('2026-10-24');
 
   // Search autocomplete helpers
   const [searchQueryA, setSearchQueryA] = useState<string>('');
@@ -164,7 +164,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Clock size={16} color="var(--accent-warm-gold)" />
           <span style={{ fontSize: '13px', color: 'var(--text-ivory)' }}>
-            <strong>UFC Historical Cutoff Notice:</strong> Ground-truth records conclude on <strong>March 20, 2021</strong>. Predictions for subsequent or fantasy matchups are hypothetical simulations based on pre-cutoff career profiles.
+            <strong>UFC Historical Cutoff Notice:</strong> Ground-truth records conclude on <strong>October 24, 2026</strong>. Predictions for subsequent or fantasy matchups are hypothetical simulations based on pre-cutoff career profiles.
           </span>
         </div>
         <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-warm-gold)', padding: '2px 8px', background: 'rgba(194, 166, 118, 0.15)', borderRadius: '4px' }}>
@@ -433,7 +433,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
                 <input
                   type="date"
                   value={targetDate}
-                  max="2021-03-20"
+                  max="2026-10-24"
                   onChange={(e) => setTargetDate(e.target.value)}
                   style={{
                     background: 'var(--bg-surface-elevated)',
