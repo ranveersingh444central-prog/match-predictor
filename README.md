@@ -86,25 +86,41 @@ To accurately reflect live deployment, data is partitioned by time rather than r
 
 ### UFC / MMA Combat Intelligence Pipeline & Results
 
-#### Data Provenance & Scale
-- **Source:** Official UFCStats.com combat statistics archive via open factual sports datasets
-- **Historical Coverage:** March 11, 1994 to October 24, 2026 (8,961 bouts, 4,629 athlete profiles)
-- **Leakage Safeguards:** Strictly backward-looking rolling form ($t < t_{\text{bout}}$), elimination of post-fight and career static totals, neutral debutant imputation.
+#### Data Provenance & Legal Attribution
+- **Combat Statistics Source:** Official factual bout logs and athlete physical profiles scraped from [UFCStats.com](http://ufcstats.com/) (official statistics provider for the Ultimate Fighting Championship).
+- **Scraper Software Attribution:** Historical data ingestion utilizes the open-source scraper pipeline by [Greco1899/scrape_ufc_stats](https://github.com/Greco1899/scrape_ufc_stats), licensed under **GNU General Public License v3.0 (GPL-3.0)**.
+- **Data Legal Status:** Under US intellectual property jurisprudence (*Feist Publications v. Rural Telephone Service*, *Motorola v. NBA*), factual sports scores and match statistics are not subject to copyright. However, website terms of service may restrict automated access; therefore, no unverified CC0/public-domain dedication is asserted for the live scraped feed, and licensing uncertainty is transparently documented.
+- **Historical Coverage:** March 11, 1994 to October 24, 2026 (8,961 clean bouts, 4,620 unique athlete profiles).
+- **Zero-Leakage Safeguards:** Strictly backward-looking rolling form ($t < t_{\text{bout}}$), complete elimination of post-fight and career static totals, neutral debutant imputation.
 
-#### Chronological Validation Split (3-Way)
-- **Training Horizon:** 6,164 bouts (`1994-03-11` to `2021-09-25`)
-- **Validation Horizon:** 1,320 bouts (`2021-09-25` to `2024-04-27`)
-- **Held-Out Test Horizon:** 1,322 unseen bouts (`2024-04-27` to `2026-10-24`)
+#### Chronological 3-Way Partitioning & Model Selection Protocol
+- **Training Horizon:** 6,164 decisive bouts (`1994-03-11` to `2021-09-25`)
+- **Validation Horizon (Model Selection):** 1,320 decisive bouts (`2021-09-25` to `2024-04-27`)
+  - *Prior Baseline:* Acc 57.27%, Log Loss 0.7039, Brier Score 0.2545
+  - *Logistic Regression:* Acc 60.00%, Log Loss 0.6726, Brier Score 0.2389, ROC-AUC 0.6163
+  - *Random Forest:* Acc **60.08%**, Log Loss **0.6663**, Brier Score **0.2371**, ROC-AUC **0.6309** *(Selected as Champion based strictly on validation scoring rules)*
+- **Held-Out Test Horizon (Exploratory Candidate Comparison):** 1,322 decisive bouts (`2024-04-27` to `2026-10-24`)
 
-#### Empirical Results (Held-Out Test Set: 1,322 Bouts)
+#### Empirical Results (Exploratory Candidate Comparison on 1,322 Test Bouts)
 
-| Metric | Prior Class Baseline | Logistic Regression | Random Forest |
+**Primary Task: Binary Win Prediction (Red Corner Win vs Blue Corner Win)**
+
+| Metric | Prior Baseline | Always Red Baseline | Random Forest (Val-Selected Champion) | Logistic Regression (Candidate) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Accuracy** | 55.67% | 55.67% | **60.14% (+4.47%)** | 61.65% (+5.98%) |
+| **ROC-AUC** | 0.5000 | 0.5000 | **0.6706** | 0.6651 |
+| **Log Loss** | 0.7153 | N/A | **0.6602** | 0.6573 |
+| **Brier Score** | 0.2600 | 0.4433 | **0.2341** | 0.2320 |
+| **Macro F1** | 0.3576 | 0.3576 | **0.7234** | 0.7169 |
+
+**Secondary Task: Finishing Method Classification (Decision vs KO/TKO vs Submission)**
+
+| Metric | Majority-Class Baseline (Decision) | Logistic Regression Method Classifier | Status |
 | :--- | :--- | :--- | :--- |
-| **Accuracy** | 55.67% | **61.65% (+5.98%)** | 60.14% (+4.47%) |
-| **ROC-AUC** | 0.5000 | 0.6651 | **0.6706** |
-| **Log Loss** | 0.7153 | **0.6573** | 0.6602 |
-| **Brier Score** | 0.2600 | **0.2320** | 0.2341 |
-| **Victory Method Classifier** | - | **61.88% Accuracy** | (KO/TKO, Sub, Dec) |
+| **Accuracy** | **48.72%** (647 / 1,328 bouts) | **47.29%** (628 / 1,328 bouts) | **Baseline Not Beaten (-1.43%)** |
+
+> [!NOTE]
+> **Task Separation:** Finishing-method prediction is an exploratory secondary classification model that does not beat the majority-class baseline. It is strictly decoupled from the primary binary win probability engine, which reliably improves upon prior baselines (+4.47% accuracy, Brier score 0.2341 vs 0.2600).
 
 ---
 

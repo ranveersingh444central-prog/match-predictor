@@ -14,8 +14,6 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_DIR))
 
 from app.main import app
-
-from app.main import app
 from app.core.config import settings
 import pandas as pd
 
@@ -231,3 +229,19 @@ def test_ufc_predict_missing_model_error():
         response = client.post("/api/ufc/predict", json=payload)
         assert response.status_code == 503
         assert "not available" in response.json()["detail"].lower()
+
+def test_ufc_dataset_unavailable_handling():
+    """Verify service degradation and 503 error handling when clean dataset is missing."""
+    from app.services.ufc_service import UFCService
+    from fastapi import HTTPException
+    with patch("app.services.ufc_service.settings.ufc_processed_data_dir", Path("/non_existent_ufc_data")):
+        degraded_svc = UFCService()
+        status = degraded_svc.get_status()
+        assert status["status"] == "degraded"
+        assert status["data_ready"] is False
+
+        # Attempting to query fighters from missing processed data raises 503
+        with pytest.raises(HTTPException) as exc_info:
+            degraded_svc.get_fighters()
+        assert exc_info.value.status_code == 503
+        assert "not available" in exc_info.value.detail.lower()

@@ -1,177 +1,177 @@
 [
   {
-    "feature": "reach_diff",
-    "weight": 0.267,
-    "importance": 0.267
-  },
-  {
     "feature": "age_diff",
-    "weight": -0.171,
-    "importance": 0.171
-  },
-  {
-    "feature": "title_bout",
-    "weight": 0.1655,
-    "importance": 0.1655
-  },
-  {
-    "feature": "str_def_diff",
-    "weight": 0.1302,
-    "importance": 0.1302
-  },
-  {
-    "feature": "height_diff",
-    "weight": -0.1253,
-    "importance": 0.1253
-  },
-  {
-    "feature": "sapm_diff",
-    "weight": -0.1216,
-    "importance": 0.1216
+    "weight": 0.1311,
+    "importance": 0.1311
   },
   {
     "feature": "age_r",
-    "weight": -0.1155,
-    "importance": 0.1155
+    "weight": 0.095,
+    "importance": 0.095
+  },
+  {
+    "feature": "sapm_diff",
+    "weight": 0.077,
+    "importance": 0.077
+  },
+  {
+    "feature": "str_def_diff",
+    "weight": 0.0576,
+    "importance": 0.0576
   },
   {
     "feature": "td_avg_diff",
-    "weight": 0.1137,
-    "importance": 0.1137
+    "weight": 0.0475,
+    "importance": 0.0475
+  },
+  {
+    "feature": "reach_diff",
+    "weight": 0.0466,
+    "importance": 0.0466
   },
   {
     "feature": "total_fights_r",
-    "weight": -0.1118,
-    "importance": 0.1118
-  },
-  {
-    "feature": "win_pct_r",
-    "weight": 0.11,
-    "importance": 0.11
+    "weight": 0.0448,
+    "importance": 0.0448
   },
   {
     "feature": "age_b",
-    "weight": 0.1017,
-    "importance": 0.1017
-  },
-  {
-    "feature": "win_streak_b",
-    "weight": -0.1009,
-    "importance": 0.1009
-  },
-  {
-    "feature": "is_debut_r",
-    "weight": 0.0902,
-    "importance": 0.0902
-  },
-  {
-    "feature": "is_southpaw_r",
-    "weight": 0.0871,
-    "importance": 0.0871
-  },
-  {
-    "feature": "win_pct_b",
-    "weight": 0.084,
-    "importance": 0.084
-  },
-  {
-    "feature": "layoff_days_r",
-    "weight": -0.0806,
-    "importance": 0.0806
-  },
-  {
-    "feature": "form_diff_roll3",
-    "weight": -0.0742,
-    "importance": 0.0742
-  },
-  {
-    "feature": "total_fights_b",
-    "weight": -0.0731,
-    "importance": 0.0731
+    "weight": 0.0409,
+    "importance": 0.0409
   },
   {
     "feature": "str_acc_diff",
-    "weight": 0.0672,
-    "importance": 0.0672
-  },
-  {
-    "feature": "win_streak_diff",
-    "weight": 0.0614,
-    "importance": 0.0614
+    "weight": 0.0404,
+    "importance": 0.0404
   },
   {
     "feature": "total_fights_diff",
-    "weight": -0.0496,
-    "importance": 0.0496
+    "weight": 0.0398,
+    "importance": 0.0398
+  },
+  {
+    "feature": "layoff_days_r",
+    "weight": 0.0358,
+    "importance": 0.0358
   },
   {
     "feature": "slpm_diff",
-    "weight": 0.0493,
-    "importance": 0.0493
-  },
-  {
-    "feature": "form_roll3_r",
-    "weight": -0.0473,
-    "importance": 0.0473
-  },
-  {
-    "feature": "is_debut_b",
-    "weight": 0.0423,
-    "importance": 0.0423
-  },
-  {
-    "feature": "td_def_diff",
-    "weight": 0.0413,
-    "importance": 0.0413
-  },
-  {
-    "feature": "form_roll3_b",
-    "weight": 0.0406,
-    "importance": 0.0406
-  },
-  {
-    "feature": "layoff_days_b",
-    "weight": -0.0349,
-    "importance": 0.0349
-  },
-  {
-    "feature": "form_diff_roll5",
-    "weight": 0.0331,
-    "importance": 0.0331
-  },
-  {
-    "feature": "stance_orthodox_vs_southpaw",
-    "weight": -0.0319,
-    "importance": 0.0319
-  },
-  {
-    "feature": "layoff_diff_days",
-    "weight": -0.0312,
-    "importance": 0.0312
-  },
-  {
-    "feature": "sub_avg_diff",
-    "weight": -0.0276,
-    "importance": 0.0276
-  },
-  {
-    "feature": "is_southpaw_b",
-    "weight": -0.0271,
-    "importance": 0.0271
-  },
-  {
-    "feature": "win_streak_r",
-    "weight": -0.0178,
-    "importance": 0.0178
+    "weight": 0.0324,
+    "importance": 0.0324
   },
   {
     "feature": "win_pct_diff",
-    "weight": 0.0177,
-    "importance": 0.0177
+    "weight": 0.0312,
+    "importance": 0.0312
+  },
+  {
+    "feature": "layoff_diff_days",
+    "weight": 0.0309,
+    "importance": 0.0309
+  },
+  {
+    "feature": "sub_avg_diff",
+    "weight": 0.0305,
+    "importance": 0.0305
+  },
+  {
+    "feature": "win_pct_r",
+    "weight": 0.0271,
+    "importance": 0.0271
+  },
+  {
+    "feature": "td_def_diff",
+    "weight": 0.0249,
+    "importance": 0.0249
+  },
+  {
+    "feature": "form_diff_roll5",
+    "weight": 0.0194,
+    "importance": 0.0194
   },
   {
     "feature": "finish_rate_diff",
-    "weight": 0.0004,
-    "importance": 0.0004
+    "weight": 0.0178,
+    "importance": 0.0178
+  },
+  {
+    "feature": "layoff_days_b",
+    "weight": 0.0168,
+    "importance": 0.0168
+  },
+  {
+    "feature": "total_fights_b",
+    "weight": 0.0146,
+    "importance": 0.0146
+  },
+  {
+    "feature": "win_pct_b",
+    "weight": 0.0141,
+    "importance": 0.0141
+  },
+  {
+    "feature": "height_diff",
+    "weight": 0.0109,
+    "importance": 0.0109
+  },
+  {
+    "feature": "form_roll3_r",
+    "weight": 0.0102,
+    "importance": 0.0102
+  },
+  {
+    "feature": "win_streak_diff",
+    "weight": 0.01,
+    "importance": 0.01
+  },
+  {
+    "feature": "is_debut_r",
+    "weight": 0.0088,
+    "importance": 0.0088
+  },
+  {
+    "feature": "form_diff_roll3",
+    "weight": 0.0077,
+    "importance": 0.0077
+  },
+  {
+    "feature": "form_roll3_b",
+    "weight": 0.0068,
+    "importance": 0.0068
+  },
+  {
+    "feature": "win_streak_r",
+    "weight": 0.0067,
+    "importance": 0.0067
+  },
+  {
+    "feature": "title_bout",
+    "weight": 0.0064,
+    "importance": 0.0064
+  },
+  {
+    "feature": "win_streak_b",
+    "weight": 0.0058,
+    "importance": 0.0058
+  },
+  {
+    "feature": "is_debut_b",
+    "weight": 0.0035,
+    "importance": 0.0035
+  },
+  {
+    "feature": "is_southpaw_r",
+    "weight": 0.0029,
+    "importance": 0.0029
+  },
+  {
+    "feature": "stance_orthodox_vs_southpaw",
+    "weight": 0.0026,
+    "importance": 0.0026
+  },
+  {
+    "feature": "is_southpaw_b",
+    "weight": 0.0015,
+    "importance": 0.0015
   }
 ]

@@ -142,27 +142,34 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
             "f1_score": round(f1, 4)
         }
 
-    eval_prior = evaluate_model("Prior Class Baseline", y_test, y_pred_dummy, p_dummy)
+    # 6. Evaluation on Validation Set (Strictly used for Model Selection)
+    val_eval_prior = evaluate_model("Prior Baseline (Val)", y_val, dummy_prior.predict(X_val), dummy_prior.predict_proba(X_val)[:, 1])
+    val_eval_lr = evaluate_model("Logistic Regression (Val)", y_val, lr_pipeline.predict(X_val), lr_pipeline.predict_proba(X_val)[:, 1])
+    val_eval_rf = evaluate_model("Random Forest (Val)", y_val, rf_pipeline.predict(X_val), rf_pipeline.predict_proba(X_val)[:, 1])
+
+    # Select Champion Model strictly based on Validation Log Loss and Brier Score
+    champion_pipeline = rf_pipeline if val_eval_rf["log_loss"] <= val_eval_lr["log_loss"] else lr_pipeline
+    champion_name = "Random Forest" if champion_pipeline == rf_pipeline else "Logistic Regression"
+
+    # 7. Candidate Evaluation on Held-Out Test Set (Documented as Exploratory Candidate Comparison)
+    eval_prior = evaluate_model("Prior Class Baseline", y_test, dummy_prior.predict(X_test), dummy_prior.predict_proba(X_test)[:, 1])
     eval_red = {
         "model_name": "Always Red Corner Baseline",
-        "accuracy": round(float(accuracy_score(y_test, y_pred_red)), 4),
+        "accuracy": round(float(accuracy_score(y_test, dummy_red.predict(X_test))), 4),
         "brier_score": round(float(np.mean((1.0 - y_test) ** 2)), 4),
         "log_loss": None,
         "roc_auc": 0.50
     }
-    eval_lr = evaluate_model("Logistic Regression", y_test, y_pred_lr, p_lr_test)
-    eval_rf = evaluate_model("Random Forest", y_test, y_pred_rf, p_rf_test)
+    eval_lr = evaluate_model("Logistic Regression", y_test, lr_pipeline.predict(X_test), lr_pipeline.predict_proba(X_test)[:, 1])
+    eval_rf = evaluate_model("Random Forest", y_test, rf_pipeline.predict(X_test), rf_pipeline.predict_proba(X_test)[:, 1])
 
-    # 6. Select Champion Model based on Log Loss and Brier Score
-    champion_pipeline = rf_pipeline if eval_rf["log_loss"] <= eval_lr["log_loss"] else lr_pipeline
-    champion_name = "Random Forest" if champion_pipeline == rf_pipeline else "Logistic Regression"
     p_champion_test = champion_pipeline.predict_proba(X_test)[:, 1]
 
     # Save champion model and baseline
     joblib.dump(champion_pipeline, UFC_ARTIFACTS_DIR / "ufc_model.joblib")
     joblib.dump(dummy_prior, UFC_ARTIFACTS_DIR / "ufc_baseline_model.joblib")
 
-    # 7. Calibration Curve for Champion
+    # 8. Calibration Curve for Champion
     prob_true, prob_pred = calibration_curve(y_test, p_champion_test, n_bins=6, strategy="uniform")
     calibration_data = [
         {"predicted_probability_mid": round(float(p), 4), "actual_win_rate": round(float(t), 4)}
@@ -171,7 +178,7 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
     with open(UFC_ARTIFACTS_DIR / "ufc_calibration.json", "w", encoding="utf-8") as f:
         json.dump(calibration_data, f, indent=2)
 
-    # 8. Feature Importances / Coefficients
+    # 9. Feature Importances / Coefficients
     if champion_name == "Logistic Regression":
         coefs = champion_pipeline.named_steps["clf"].coef_[0]
         imp_list = [
@@ -188,10 +195,10 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
     with open(UFC_ARTIFACTS_DIR / "ufc_feature_importance.json", "w", encoding="utf-8") as f:
         json.dump(imp_list, f, indent=2)
 
-    # 9. Confusion Matrix for Champion
+    # 10. Confusion Matrix for Champion
     cm = confusion_matrix(y_test, champion_pipeline.predict(X_test)).tolist()
 
-    # 10. Secondary Method Model (KO/TKO vs Submission vs Decision)
+    # 11. Secondary Method Model (KO/TKO vs Submission vs Decision)
     method_df = df[df["method"].isin(["Decision", "KO/TKO", "Submission"])].copy()
     n_m_train = int(len(method_df) * train_ratio)
     m_train = method_df.iloc[:n_m_train]
@@ -205,9 +212,17 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
     joblib.dump(method_pipeline, UFC_ARTIFACTS_DIR / "ufc_method_model.joblib")
 
     m_preds = method_pipeline.predict(m_test[FEATURE_COLUMNS])
+    majority_method_class = m_test["method"].value_counts().index[0]
+    majority_method_acc = round(float((m_test["method"] == majority_method_class).mean()), 4)
+    method_acc = round(float(accuracy_score(m_test["method"], m_preds)), 4)
+
     method_metrics = {
         "task": "Finishing Method Classification (Decision, KO/TKO, Submission)",
-        "accuracy": round(float(accuracy_score(m_test["method"], m_preds)), 4),
+        "accuracy": method_acc,
+        "majority_class_baseline": majority_method_class,
+        "majority_baseline_accuracy": majority_method_acc,
+        "beats_baseline": bool(method_acc > majority_method_acc),
+        "status": "Exploratory experimental model; does not beat majority decision baseline. Strictly separated from binary win prediction.",
         "total_test_samples": len(m_test),
         "class_balance_test": m_test["method"].value_counts().to_dict()
     }
@@ -216,6 +231,16 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
     metrics_summary = {
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "champion_model": champion_name,
+        "model_selection": {
+            "selection_split": "Validation Partition (2021-09-25 to 2024-04-27, N=1,320)",
+            "selection_criterion": "Validation Log Loss and Brier Score",
+            "validation_metrics": {
+                "baseline_prior": val_eval_prior,
+                "logistic_regression": val_eval_lr,
+                "random_forest": val_eval_rf
+            },
+            "selected_champion": champion_name
+        },
         "dataset_split": {
             "strategy": f"Chronological ({train_df['date'].min().strftime('%Y')}-{train_df['date'].max().strftime('%Y')} Train, {val_df['date'].min().strftime('%Y')}-{val_df['date'].max().strftime('%Y')} Val, {test_df['date'].min().strftime('%Y')}-{test_df['date'].max().strftime('%Y')} Test)",
             "train_samples": len(train_df),
@@ -229,6 +254,10 @@ def train_and_evaluate_ufc_pipeline(train_ratio: float = 0.70, val_ratio: float 
                 "blue_wins": int(len(y_test) - y_test.sum()),
                 "red_win_rate_pct": round(float(y_test.mean()) * 100, 2)
             }
+        },
+        "test_evaluation_protocol": {
+            "status": "Exploratory candidate comparison on 2024-04-27 to 2026-10-24 test horizon (N=1,322)",
+            "retraining_protocol": "Model architecture (Random Forest) was chosen on the 2021-2024 validation split. For deployment, the champion can be retrained on combined Train + Validation (1994 to April 2024). Fights after October 2026 are reserved for future prospective evaluation."
         },
         "models_evaluated": {
             "baseline_prior": eval_prior,

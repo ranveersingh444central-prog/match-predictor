@@ -1,8 +1,8 @@
 {
   "model_version": "ufc_v2.0_2026",
   "sport": "ufc_mma",
-  "algorithm": "Logistic Regression",
-  "created_at": "2026-10-27T19:06:01.056906Z",
+  "algorithm": "Random Forest",
+  "created_at": "2026-10-27T19:54:51.554350Z",
   "feature_count": 35,
   "feature_columns": [
     "height_diff",

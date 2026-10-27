@@ -89,7 +89,7 @@ export const UFCModelLab: React.FC = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Clock size={16} color="var(--accent-warm-gold)" />
           <span style={{ fontSize: '13px', color: 'var(--text-ivory)' }}>
-            <strong>Out-of-Sample Test Evaluation:</strong> Evaluated on 889 unobserved bouts from 2019 to <strong>March 20, 2021</strong>.
+            <strong>Out-of-Sample Test Evaluation:</strong> Evaluated on {split.test_samples.toLocaleString()} unobserved bouts from {split.test_date_range[0]} to <strong>{split.test_date_range[1]}</strong>.
           </span>
         </div>
         <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-warm-gold)', padding: '2px 8px', background: 'rgba(194, 166, 118, 0.15)', borderRadius: '4px' }}>
@@ -115,13 +115,13 @@ export const UFCModelLab: React.FC = () => {
             ML Evaluation Suite
           </span>
           <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>•</span>
-          <span style={{ color: 'var(--text-sage)', fontSize: '13px' }}>Random Forest Champion</span>
+          <span style={{ color: 'var(--text-sage)', fontSize: '13px' }}>{metrics.champion_model} Champion (Validation-Selected)</span>
         </div>
         <h1 style={{ fontSize: '38px', lineHeight: '1.2', marginBottom: '12px' }}>
           UFC Model Laboratory
         </h1>
         <p style={{ color: 'var(--text-sage)', fontSize: '16px', maxWidth: '780px' }}>
-          Rigorous out-of-sample forward evaluation. Compare champion probability calibration against baseline priors and inspect the mathematical hierarchy of features.
+          Rigorous out-of-sample forward evaluation. Compare candidate models selected on the 2021–2024 validation period against baseline priors across 1,322 held-out test bouts.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export const UFCModelLab: React.FC = () => {
             {(metrics.champion_performance.accuracy * 100).toFixed(2)}%
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>
-            vs 58.83% prior baseline
+            vs {(models.baseline_prior.accuracy * 100).toFixed(2)}% prior baseline
           </div>
         </div>
 
@@ -152,7 +152,7 @@ export const UFCModelLab: React.FC = () => {
             {metrics.champion_performance.brier_score.toFixed(4)}
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>
-            Lower is better (prior 0.2422)
+            Lower is better (prior {models.baseline_prior.brier_score.toFixed(4)})
           </div>
         </div>
 
@@ -161,10 +161,10 @@ export const UFCModelLab: React.FC = () => {
             Log Loss
           </div>
           <div className="num-tabular" style={{ fontSize: '32px', fontFamily: 'var(--font-serif)', color: 'var(--text-ivory)' }}>
-            {metrics.champion_performance.log_loss?.toFixed(4) || '0.6678'}
+            {metrics.champion_performance.log_loss?.toFixed(4) || '0.6602'}
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>
-            Outperforming LR (0.6726)
+            vs prior ({models.baseline_prior.log_loss?.toFixed(4) || '0.7153'})
           </div>
         </div>
 
@@ -176,7 +176,7 @@ export const UFCModelLab: React.FC = () => {
             {metrics.champion_performance.roc_auc.toFixed(4)}
           </div>
           <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>
-            Discriminative ability
+            Discriminative ability (prior 0.5000)
           </div>
         </div>
       </div>

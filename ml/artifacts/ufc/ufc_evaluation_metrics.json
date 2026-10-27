@@ -1,6 +1,43 @@
 {
-  "timestamp": "2026-10-27T19:06:01.056906Z",
-  "champion_model": "Logistic Regression",
+  "timestamp": "2026-10-27T19:54:51.552344Z",
+  "champion_model": "Random Forest",
+  "model_selection": {
+    "selection_split": "Validation Partition (2021-09-25 to 2024-04-27, N=1,320)",
+    "selection_criterion": "Validation Log Loss and Brier Score",
+    "validation_metrics": {
+      "baseline_prior": {
+        "model_name": "Prior Baseline (Val)",
+        "accuracy": 0.5727,
+        "roc_auc": 0.5,
+        "log_loss": 0.7039,
+        "brier_score": 0.2545,
+        "precision": 0.5727,
+        "recall": 1.0,
+        "f1_score": 0.7283
+      },
+      "logistic_regression": {
+        "model_name": "Logistic Regression (Val)",
+        "accuracy": 0.6,
+        "roc_auc": 0.6163,
+        "log_loss": 0.6726,
+        "brier_score": 0.2389,
+        "precision": 0.6071,
+        "recall": 0.8545,
+        "f1_score": 0.7099
+      },
+      "random_forest": {
+        "model_name": "Random Forest (Val)",
+        "accuracy": 0.6008,
+        "roc_auc": 0.6309,
+        "log_loss": 0.6663,
+        "brier_score": 0.2371,
+        "precision": 0.595,
+        "recall": 0.9484,
+        "f1_score": 0.7313
+      }
+    },
+    "selected_champion": "Random Forest"
+  },
   "dataset_split": {
     "strategy": "Chronological (1994-2021 Train, 2021-2024 Val, 2024-2026 Test)",
     "train_samples": 6164,
@@ -23,6 +60,10 @@
       "blue_wins": 586,
       "red_win_rate_pct": 55.67
     }
+  },
+  "test_evaluation_protocol": {
+    "status": "Exploratory candidate comparison on 2024-04-27 to 2026-10-24 test horizon (N=1,322)",
+    "retraining_protocol": "Model architecture (Random Forest) was chosen on the 2021-2024 validation split. For deployment, the champion can be retrained on combined Train + Validation (1994 to April 2024). Fights after October 2026 are reserved for future prospective evaluation."
   },
   "models_evaluated": {
     "baseline_prior": {
@@ -64,14 +105,14 @@
     }
   },
   "champion_performance": {
-    "model_name": "Logistic Regression",
-    "accuracy": 0.6165,
-    "roc_auc": 0.6651,
-    "log_loss": 0.6573,
-    "brier_score": 0.232,
-    "precision": 0.6085,
-    "recall": 0.8723,
-    "f1_score": 0.7169
+    "model_name": "Random Forest",
+    "accuracy": 0.6014,
+    "roc_auc": 0.6706,
+    "log_loss": 0.6602,
+    "brier_score": 0.2341,
+    "precision": 0.5894,
+    "recall": 0.9361,
+    "f1_score": 0.7234
   },
   "confusion_matrix": {
     "labels": [
@@ -80,18 +121,22 @@
     ],
     "matrix": [
       [
-        173,
-        413
+        106,
+        480
       ],
       [
-        94,
-        642
+        47,
+        689
       ]
     ]
   },
   "secondary_method_model": {
     "task": "Finishing Method Classification (Decision, KO/TKO, Submission)",
     "accuracy": 0.4729,
+    "majority_class_baseline": "Decision",
+    "majority_baseline_accuracy": 0.4872,
+    "beats_baseline": false,
+    "status": "Exploratory experimental model; does not beat majority decision baseline. Strictly separated from binary win prediction.",
     "total_test_samples": 1328,
     "class_balance_test": {
       "Decision": 647,

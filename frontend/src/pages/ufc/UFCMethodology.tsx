@@ -144,20 +144,23 @@ export const UFCMethodology: React.FC = () => {
           </div>
           <p style={{ color: 'var(--text-parchment)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '16px' }}>
             Standard randomized K-Fold cross validation is mathematically inappropriate for sports prediction because it trains models on future bouts and evaluates them on past bouts. 
-            PITCHIQ enforces a chronological walk-forward holdout:
+            PITCHIQ enforces a rigorous 3-way chronological walk-forward partition:
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
             <div style={{ padding: '12px', background: 'var(--bg-deep)', borderRadius: '4px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Train (1994–2017)</div>
-              <div style={{ fontSize: '15px', color: 'var(--text-ivory)', fontWeight: 600 }}>4,181 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Train (1994–2021)</div>
+              <div style={{ fontSize: '15px', color: 'var(--text-ivory)', fontWeight: 600 }}>6,164 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '4px' }}>Parameter estimation</div>
             </div>
             <div style={{ padding: '12px', background: 'var(--bg-deep)', borderRadius: '4px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Validation (2018–2019)</div>
-              <div style={{ fontSize: '15px', color: 'var(--text-ivory)', fontWeight: 600 }}>888 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--accent-sage-bright)' }}>Validation (2021–2024)</div>
+              <div style={{ fontSize: '15px', color: 'var(--accent-sage-bright)', fontWeight: 600 }}>1,320 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '4px' }}>Model & architecture selection</div>
             </div>
             <div style={{ padding: '12px', background: 'var(--bg-deep)', borderRadius: '4px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '11px', color: 'var(--accent-warm-gold)' }}>Test (2019–March 2021)</div>
-              <div style={{ fontSize: '15px', color: 'var(--accent-warm-gold)', fontWeight: 600 }}>889 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--accent-warm-gold)' }}>Test (2024–Oct 2026)</div>
+              <div style={{ fontSize: '15px', color: 'var(--accent-warm-gold)', fontWeight: 600 }}>1,322 Bouts</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '4px' }}>Exploratory candidate comparison</div>
             </div>
           </div>
         </div>
@@ -172,31 +175,48 @@ export const UFCMethodology: React.FC = () => {
           </div>
           <p style={{ color: 'var(--text-parchment)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '16px' }}>
             In combat sports, predicting a 95% confident win for an athlete who gets caught by a single punch in Round 1 yields a catastrophic penalty in proper betting and probability estimation. 
-            Consequently, model selection prioritizes <strong>Brier Score</strong> and <strong>Logarithmic Loss</strong> over raw binary accuracy:
+            Consequently, candidate model selection on the 2021–2024 validation split strictly prioritized <strong>Brier Score</strong> and <strong>Logarithmic Loss</strong> over raw binary accuracy:
           </p>
           <div style={{ padding: '14px 18px', background: 'var(--bg-deep)', borderRadius: '6px', border: '1px solid var(--border-subtle)', fontFamily: 'monospace', fontSize: '13px', color: 'var(--accent-sage-bright)', marginBottom: '16px' }}>
             {"Brier Score = (1/N) ∑ (p_i - y_i)²,   Log Loss = -(1/N) ∑ [y_i ln(p_i) + (1 - y_i) ln(1 - p_i)]"}
           </div>
           <p style={{ color: 'var(--text-sage)', fontSize: '14px', lineHeight: '1.6' }}>
-            The Random Forest model achieves a Brier Score of <strong>0.2368</strong> (beating the historical prior baseline of 0.2422) and Log Loss of <strong>0.6678</strong>.
+            On the validation partition, <strong>Random Forest</strong> achieved lower Log Loss (<strong>0.6663</strong> vs 0.6726) and lower Brier Score (<strong>0.2371</strong> vs 0.2389) compared to Logistic Regression, earning selection as champion. On the exploratory 2024–2026 test horizon, Random Forest achieved Brier Score <strong>0.2341</strong> (beating prior baseline 0.2600) and ROC-AUC <strong>0.6706</strong>.
           </p>
         </div>
 
-        {/* Section 6: Provenance & Dataset Boundaries */}
+        {/* Section 6: Task Separation — Win Prediction vs Finishing Method */}
+        <div className="card" style={{ padding: '28px', border: '1px solid var(--border-medium)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <Target size={18} color="var(--accent-warm-gold)" />
+            <h3 style={{ fontSize: '20px', color: 'var(--text-ivory)' }}>
+              6. Task Separation: Binary Win Prediction vs. Finishing Method
+            </h3>
+          </div>
+          <p style={{ color: 'var(--text-parchment)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '16px' }}>
+            PITCHIQ strictly separates the primary binary combat win model from secondary finishing-method estimation:
+          </p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-parchment)', fontSize: '14px', lineHeight: '1.7', marginBottom: '16px' }}>
+            <li><strong>Binary Outcome Engine (Production Champion):</strong> Predicts P(Red Win) vs P(Blue Win). Evaluated with proper scoring rules; outperforms historical baselines (+4.47% accuracy, Brier score 0.2341).</li>
+            <li><strong>Finishing Method Classifier (Exploratory):</strong> Predicts Decision vs KO/TKO vs Submission. Achieved <strong>47.29% test accuracy</strong> against a majority-class Decision baseline of <strong>48.72%</strong>. Because this model does not beat the naive majority baseline, it is kept strictly exploratory.</li>
+          </ul>
+        </div>
+
+        {/* Section 7: Provenance & Dataset Boundaries */}
         <div className="card" style={{ padding: '28px', border: '1px solid var(--border-medium)', background: 'var(--bg-surface-muted)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <FileCheck2 size={18} color="var(--accent-warm-gold)" />
             <h3 style={{ fontSize: '20px', color: 'var(--text-ivory)' }}>
-              6. Dataset Provenance & Dataset Scope Boundary
+              7. Dataset Provenance & Scope Boundary
             </h3>
           </div>
           <p style={{ color: 'var(--text-parchment)', fontSize: '14px', lineHeight: '1.7', marginBottom: '12px' }}>
-            The UFC dataset comprises 6,012 bouts and 3,596 athlete profiles derived from official public fight logs published under the CC0 Public Domain Dedication. 
-            Ground truth records conclude on <strong>March 20, 2021</strong> (UFC on ESPN: Brunson vs. Holland).
+            The UFC dataset comprises <strong>8,961 clean bouts</strong> and <strong>4,620 unique athlete profiles</strong> spanning March 11, 1994 to <strong>October 24, 2026</strong> (UFC 308). 
+            Underlying factual combat statistics originate from official records on UFCStats.com. Automated data ingestion utilizes the open-source pipeline by Greco1899 (GPL-3.0 scraper software). Factual sports results are non-copyrightable facts; terms-of-service uncertainty is transparently documented without claiming unverified CC0 dedications.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-warm-gold)', fontSize: '13px' }}>
             <AlertTriangle size={15} />
-            <span>Predictions for post-2021 or active bouts must be treated as hypothetical model simulations based on verified pre-cutoff fight histories.</span>
+            <span>Fights beyond the October 24, 2026 cutoff represent active/prospective events evaluated in real time without historical outcome leakage.</span>
           </div>
         </div>
       </div>

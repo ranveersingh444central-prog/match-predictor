@@ -1,26 +1,22 @@
 [
   {
-    "predicted_probability_mid": 0.1064,
+    "predicted_probability_mid": 0.3137,
+    "actual_win_rate": 0.3333
+  },
+  {
+    "predicted_probability_mid": 0.4489,
+    "actual_win_rate": 0.3067
+  },
+  {
+    "predicted_probability_mid": 0.5933,
+    "actual_win_rate": 0.4691
+  },
+  {
+    "predicted_probability_mid": 0.7264,
+    "actual_win_rate": 0.6958
+  },
+  {
+    "predicted_probability_mid": 0.8381,
     "actual_win_rate": 1.0
-  },
-  {
-    "predicted_probability_mid": 0.283,
-    "actual_win_rate": 0.2439
-  },
-  {
-    "predicted_probability_mid": 0.43,
-    "actual_win_rate": 0.3689
-  },
-  {
-    "predicted_probability_mid": 0.5897,
-    "actual_win_rate": 0.5065
-  },
-  {
-    "predicted_probability_mid": 0.7414,
-    "actual_win_rate": 0.6705
-  },
-  {
-    "predicted_probability_mid": 0.8656,
-    "actual_win_rate": 0.8108
   }
 ]
