@@ -493,7 +493,19 @@ button {
   .mobile-nav-toggle {
     display: block;
   }
+  .matchup-select-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .matchup-select-grid .vs-separator {
+    display: none;
+  }
+  .fight-matchup-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
 }
+
 
 /* Card Utility Alias */
 .card {
@@ -513,8 +525,15 @@ button {
   100% { transform: rotate(360deg); }
 }
 
-.spinning {
+.spinning,
+.animate-spin {
   animation: spin 1s linear infinite;
+}
+
+/* Accessible Focus Indicators */
+:focus-visible {
+  outline: 2px solid var(--accent-sage-bright);
+  outline-offset: 2px;
 }
 
 /* Sport Switcher Button Hover */
@@ -522,4 +541,5 @@ button {
   background-color: rgba(255, 255, 255, 0.05);
   color: var(--text-ivory);
 }
+
 

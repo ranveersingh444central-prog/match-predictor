@@ -137,6 +137,7 @@ export const FighterProfiles: React.FC<FighterProfilesProps> = ({ onNavigate }) 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by fighter name (e.g. Khabib, Jones, McGregor)..."
+              aria-label="Search fighters by name"
               style={{
                 width: '100%',
                 background: 'var(--bg-surface-elevated)',
@@ -150,6 +151,7 @@ export const FighterProfiles: React.FC<FighterProfilesProps> = ({ onNavigate }) 
             {search && (
               <button
                 onClick={() => setSearch('')}
+                aria-label="Clear fighter search"
                 style={{
                   position: 'absolute',
                   right: '12px',
@@ -168,9 +170,11 @@ export const FighterProfiles: React.FC<FighterProfilesProps> = ({ onNavigate }) 
           {/* Stance Selector */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Filter size={15} color="var(--text-muted)" />
-            <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Stance:</span>
+            <label htmlFor="stance-select" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Stance:</label>
             <select
+              id="stance-select"
               value={stance}
+              aria-label="Filter fighters by stance"
               onChange={(e) => {
                 setStance(e.target.value);
                 setPage(1);
@@ -189,6 +193,7 @@ export const FighterProfiles: React.FC<FighterProfilesProps> = ({ onNavigate }) 
               <option value="Southpaw">Southpaw</option>
               <option value="Switch">Switch</option>
             </select>
+
           </div>
         </div>
       </div>

@@ -231,7 +231,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
       {/* Matchup Configuration Form */}
       <div className="card" style={{ padding: '28px', marginBottom: '36px', border: '1px solid var(--border-medium)' }}>
         <form onSubmit={handleFormSubmit}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '20px', alignItems: 'center', marginBottom: '24px' }}>
+          <div className="fight-matchup-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '20px', alignItems: 'center', marginBottom: '24px' }}>
             {/* Fighter A (Red Corner) */}
             <div style={{ position: 'relative' }}>
               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#E58A88', fontWeight: 600, marginBottom: '8px' }}>
@@ -243,13 +243,14 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
                 <input
                   type="text"
                   value={fighterA}
+                  aria-label="Fighter A name (Red Corner)"
                   onChange={(e) => {
                     setFighterA(e.target.value);
                     setSearchQueryA(e.target.value);
                     setShowDropdownA(true);
                   }}
                   onFocus={() => setShowDropdownA(true)}
-                  placeholder="Search 3,500+ athletes..."
+                  placeholder="Search 4,600+ athletes..."
                   style={{
                     flex: 1,
                     background: 'var(--bg-surface-elevated)',
@@ -342,13 +343,14 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
                 <input
                   type="text"
                   value={fighterB}
+                  aria-label="Fighter B name (Blue Corner)"
                   onChange={(e) => {
                     setFighterB(e.target.value);
                     setSearchQueryB(e.target.value);
                     setShowDropdownB(true);
                   }}
                   onFocus={() => setShowDropdownB(true)}
-                  placeholder="Search 3,500+ athletes..."
+                  placeholder="Search 4,600+ athletes..."
                   style={{
                     flex: 1,
                     background: 'var(--bg-surface-elevated)',

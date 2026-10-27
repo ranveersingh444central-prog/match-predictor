@@ -213,14 +213,16 @@ export const MatchPredictor: React.FC<MatchPredictorProps> = ({ initialFixture }
 
         {/* Matchup Selection Box */}
         <div className="editorial-card-elevated" style={{ marginBottom: '36px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr auto', gap: '24px', alignItems: 'flex-end' }}>
+          <div className="matchup-select-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr auto', gap: '24px', alignItems: 'flex-end' }}>
             {/* Home Team Select */}
             <div>
-              <label style={{ display: 'block', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-sage)', marginBottom: '8px' }}>
+              <label htmlFor="home-team-select" style={{ display: 'block', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-sage)', marginBottom: '8px' }}>
                 Home Club (Host)
               </label>
               <select
+                id="home-team-select"
                 value={homeTeam}
+                aria-label="Home club (host)"
                 onChange={(e) => setHomeTeam(e.target.value)}
                 style={{
                   width: '100%',
@@ -240,17 +242,19 @@ export const MatchPredictor: React.FC<MatchPredictorProps> = ({ initialFixture }
               </select>
             </div>
 
-            <div style={{ paddingBottom: '12px', fontSize: '18px', fontFamily: 'var(--font-serif)', color: 'var(--text-muted)' }}>
+            <div className="vs-separator" style={{ paddingBottom: '12px', fontSize: '18px', fontFamily: 'var(--font-serif)', color: 'var(--text-muted)' }}>
               vs
             </div>
 
             {/* Away Team Select */}
             <div>
-              <label style={{ display: 'block', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-sage)', marginBottom: '8px' }}>
+              <label htmlFor="away-team-select" style={{ display: 'block', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-sage)', marginBottom: '8px' }}>
                 Away Club (Visitor)
               </label>
               <select
+                id="away-team-select"
                 value={awayTeam}
+                aria-label="Away club (visitor)"
                 onChange={(e) => setAwayTeam(e.target.value)}
                 style={{
                   width: '100%',
@@ -262,6 +266,7 @@ export const MatchPredictor: React.FC<MatchPredictorProps> = ({ initialFixture }
                   fontSize: '15px'
                 }}
               >
+
                 {teams.map((t) => (
                   <option key={t.name} value={t.name}>
                     {t.name}

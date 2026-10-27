@@ -162,6 +162,7 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
               value={fighterSearch}
               onChange={(e) => setFighterSearch(e.target.value)}
               placeholder="Filter by fighter..."
+              aria-label="Filter bouts by fighter name"
               style={{
                 width: '100%',
                 background: 'var(--bg-surface-elevated)',
@@ -175,6 +176,7 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
             {fighterSearch && (
               <button
                 onClick={() => setFighterSearch('')}
+                aria-label="Clear fighter filter"
                 style={{
                   position: 'absolute',
                   right: '10px',
@@ -194,6 +196,7 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
           <div>
             <select
               value={weightClass}
+              aria-label="Filter bouts by weight division"
               onChange={(e) => {
                 setWeightClass(e.target.value);
                 setPage(1);
@@ -221,6 +224,7 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
           <div>
             <select
               value={method}
+              aria-label="Filter bouts by finishing method"
               onChange={(e) => {
                 setMethod(e.target.value);
                 setPage(1);
@@ -235,6 +239,7 @@ export const FightExplorer: React.FC<FightExplorerProps> = ({ initialFilter, onN
                 fontSize: '13.5px'
               }}
             >
+
               <option value="">All Finish Methods</option>
               <option value="KO/TKO">KO / TKO</option>
               <option value="Submission">Submission</option>
