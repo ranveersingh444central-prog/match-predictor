@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "goal_diff_comparison",
+    "importance": 0.0831
+  },
+  {
+    "feature": "home_shots_target_roll5",
+    "importance": 0.0704
+  },
+  {
+    "feature": "points_diff_roll5",
+    "importance": 0.0672
+  },
+  {
+    "feature": "ppg_diff_roll5",
+    "importance": 0.0652
+  },
+  {
+    "feature": "away_shots_target_roll5",
+    "importance": 0.0544
+  },
+  {
+    "feature": "away_goal_diff_roll5",
+    "importance": 0.0484
+  },
+  {
+    "feature": "home_ppg_roll5",
+    "importance": 0.0479
+  },
+  {
+    "feature": "home_goal_diff_roll5",
+    "importance": 0.0458
+  },
+  {
+    "feature": "home_points_roll5",
+    "importance": 0.0385
+  },
+  {
+    "feature": "away_team_away_ppg_roll5",
+    "importance": 0.0369
+  },
+  {
+    "feature": "home_days_since_last_match",
+    "importance": 0.0368
+  },
+  {
+    "feature": "home_goals_scored_roll5",
+    "importance": 0.0362
+  },
+  {
+    "feature": "away_days_since_last_match",
+    "importance": 0.0359
+  },
+  {
+    "feature": "away_goals_scored_roll5",
+    "importance": 0.0335
+  },
+  {
+    "feature": "away_goals_conceded_roll5",
+    "importance": 0.0334
+  },
+  {
+    "feature": "home_goals_conceded_roll5",
+    "importance": 0.0322
+  },
+  {
+    "feature": "home_team_home_ppg_roll5",
+    "importance": 0.0313
+  },
+  {
+    "feature": "h2h_away_wins",
+    "importance": 0.0287
+  },
+  {
+    "feature": "away_points_roll5",
+    "importance": 0.0282
+  },
+  {
+    "feature": "rest_diff_days",
+    "importance": 0.0281
+  },
+  {
+    "feature": "away_ppg_roll5",
+    "importance": 0.028
+  },
+  {
+    "feature": "h2h_home_wins",
+    "importance": 0.0264
+  },
+  {
+    "feature": "home_team_home_win_rate_roll5",
+    "importance": 0.0235
+  },
+  {
+    "feature": "away_team_away_win_rate_roll5",
+    "importance": 0.0223
+  },
+  {
+    "feature": "h2h_draws",
+    "importance": 0.0175
+  }
+]

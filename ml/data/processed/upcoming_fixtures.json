@@ -1,0 +1,152 @@
+[
+  {
+    "fixture_id": "e0_20261023_ipswich_nott'm_forest",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-23",
+    "time": "20:00",
+    "home_team": "Ipswich",
+    "away_team": "Nott'm Forest",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "3.1",
+      "b365_d": "3.4",
+      "b365_a": "2.3"
+    }
+  },
+  {
+    "fixture_id": "e0_20261024_aston_villa_man_city",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-24",
+    "time": "12:30",
+    "home_team": "Aston Villa",
+    "away_team": "Man City",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "5",
+      "b365_d": "4.33",
+      "b365_a": "1.62"
+    }
+  },
+  {
+    "fixture_id": "e0_20261024_arsenal_everton",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-24",
+    "time": "15:00",
+    "home_team": "Arsenal",
+    "away_team": "Everton",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "1.4",
+      "b365_d": "4.6",
+      "b365_a": "8"
+    }
+  },
+  {
+    "fixture_id": "e0_20261024_coventry_fulham",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-24",
+    "time": "15:00",
+    "home_team": "Coventry",
+    "away_team": "Fulham",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "3.2",
+      "b365_d": "3.4",
+      "b365_a": "2.25"
+    }
+  },
+  {
+    "fixture_id": "e0_20261024_chelsea_tottenham",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-24",
+    "time": "17:30",
+    "home_team": "Chelsea",
+    "away_team": "Tottenham",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "1.7",
+      "b365_d": "4",
+      "b365_a": "4.5"
+    }
+  },
+  {
+    "fixture_id": "e0_20261025_crystal_palace_newcastle",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-25",
+    "time": "14:00",
+    "home_team": "Crystal Palace",
+    "away_team": "Newcastle",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "2.9",
+      "b365_d": "3.6",
+      "b365_a": "2.3"
+    }
+  },
+  {
+    "fixture_id": "e0_20261025_hull_brentford",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-25",
+    "time": "14:00",
+    "home_team": "Hull",
+    "away_team": "Brentford",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "5",
+      "b365_d": "3.8",
+      "b365_a": "1.7"
+    }
+  },
+  {
+    "fixture_id": "e0_20261025_liverpool_brighton",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-25",
+    "time": "14:00",
+    "home_team": "Liverpool",
+    "away_team": "Brighton",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "2.1",
+      "b365_d": "3.6",
+      "b365_a": "3.4"
+    }
+  },
+  {
+    "fixture_id": "e0_20261025_man_united_bournemouth",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-25",
+    "time": "14:00",
+    "home_team": "Man United",
+    "away_team": "Bournemouth",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "2.15",
+      "b365_d": "3.6",
+      "b365_a": "3.25"
+    }
+  },
+  {
+    "fixture_id": "e0_20261025_sunderland_leeds",
+    "competition": "English Premier League",
+    "division": "E0",
+    "date": "2026-10-25",
+    "time": "16:30",
+    "home_team": "Sunderland",
+    "away_team": "Leeds",
+    "status": "scheduled",
+    "odds_context": {
+      "b365_h": "3.1",
+      "b365_d": "3.2",
+      "b365_a": "2.4"
+    }
+  }
+]

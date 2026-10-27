@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "model_name": "PITCHIQ Random Forest Match Predictor",
+    "algorithm": "RandomForestClassifier",
+    "pipeline": [
+      "StandardScaler",
+      "RandomForestClassifier"
+    ],
+    "class_order": [
+      "H",
+      "D",
+      "A"
+    ],
+    "class_mapping": {
+      "0": "H (Home Win)",
+      "1": "D (Draw)",
+      "2": "A (Away Win)"
+    },
+    "feature_count": 25,
+    "features": [
+      "home_points_roll5",
+      "away_points_roll5",
+      "home_ppg_roll5",
+      "away_ppg_roll5",
+      "home_goals_scored_roll5",
+      "away_goals_scored_roll5",
+      "home_goals_conceded_roll5",
+      "away_goals_conceded_roll5",
+      "home_goal_diff_roll5",
+      "away_goal_diff_roll5",
+      "home_shots_target_roll5",
+      "away_shots_target_roll5",
+      "home_team_home_ppg_roll5",
+      "away_team_away_ppg_roll5",
+      "home_team_home_win_rate_roll5",
+      "away_team_away_win_rate_roll5",
+      "home_days_since_last_match",
+      "away_days_since_last_match",
+      "rest_diff_days",
+      "points_diff_roll5",
+      "goal_diff_comparison",
+      "ppg_diff_roll5",
+      "h2h_home_wins",
+      "h2h_draws",
+      "h2h_away_wins"
+    ],
+    "total_dataset_samples": 1472,
+    "train_samples": 1148,
+    "test_samples": 324,
+    "training_period": "2021-09-11 to 2024-09-28",
+    "test_period": "2024-09-28 to 2025-05-25",
+    "trained_at": "2026-10-27T11:25:06.647099Z",
+    "hyperparameters": {
+      "n_estimators": 180,
+      "max_depth": 6,
+      "min_samples_split": 8,
+      "min_samples_leaf": 4,
+      "class_weight": "balanced_subsample",
+      "random_state": 42
+    }
+  },
+  "baseline": {
+    "strategy": "most_frequent",
+    "accuracy": 0.4198,
+    "macro_f1": 0.1971
+  },
+  "main_model": {
+    "accuracy": 0.4568,
+    "macro_precision": 0.3989,
+    "macro_recall": 0.4129,
+    "macro_f1": 0.3957,
+    "log_loss": 1.0498,
+    "brier_score": 0.6313,
+    "evaluated_test_matches": 324,
+    "per_class": {
+      "H": {
+        "name": "Home Win",
+        "precision": 0.5,
+        "recall": 0.544,
+        "f1_score": 0.521,
+        "support": 136
+      },
+      "D": {
+        "name": "Draw",
+        "precision": 0.229,
+        "recall": 0.105,
+        "f1_score": 0.144,
+        "support": 76
+      },
+      "A": {
+        "name": "Away Win",
+        "precision": 0.468,
+        "recall": 0.589,
+        "f1_score": 0.522,
+        "support": 112
+      }
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "H",
+      "D",
+      "A"
+    ],
+    "label_names": [
+      "Home Win (H)",
+      "Draw (D)",
+      "Away Win (A)"
+    ],
+    "matrix": [
+      [
+        74,
+        19,
+        43
+      ],
+      [
+        36,
+        8,
+        32
+      ],
+      [
+        38,
+        8,
+        66
+      ]
+    ]
+  },
+  "top_features": [
+    {
+      "feature": "goal_diff_comparison",
+      "importance": 0.0831
+    },
+    {
+      "feature": "home_shots_target_roll5",
+      "importance": 0.0704
+    },
+    {
+      "feature": "points_diff_roll5",
+      "importance": 0.0672
+    },
+    {
+      "feature": "ppg_diff_roll5",
+      "importance": 0.0652
+    },
+    {
+      "feature": "away_shots_target_roll5",
+      "importance": 0.0544
+    },
+    {
+      "feature": "away_goal_diff_roll5",
+      "importance": 0.0484
+    },
+    {
+      "feature": "home_ppg_roll5",
+      "importance": 0.0479
+    },
+    {
+      "feature": "home_goal_diff_roll5",
+      "importance": 0.0458
+    },
+    {
+      "feature": "home_points_roll5",
+      "importance": 0.0385
+    },
+    {
+      "feature": "away_team_away_ppg_roll5",
+      "importance": 0.0369
+    }
+  ]
+}
