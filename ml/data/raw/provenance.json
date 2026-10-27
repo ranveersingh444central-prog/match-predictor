@@ -1,0 +1,45 @@
+{
+  "provider": "Football-Data.co.uk",
+  "competition": "English Premier League (E0)",
+  "download_timestamp": "2026-10-27T11:23:40.694020Z",
+  "seasons": [
+    {
+      "season": "2021-2022",
+      "code": "2122",
+      "url": "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
+      "local_file": "E0_2122.csv",
+      "size_bytes": 175363,
+      "downloaded_now": true
+    },
+    {
+      "season": "2022-2023",
+      "code": "2223",
+      "url": "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
+      "local_file": "E0_2223.csv",
+      "size_bytes": 176180,
+      "downloaded_now": true
+    },
+    {
+      "season": "2023-2024",
+      "code": "2324",
+      "url": "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
+      "local_file": "E0_2324.csv",
+      "size_bytes": 172196,
+      "downloaded_now": true
+    },
+    {
+      "season": "2024-2025",
+      "code": "2425",
+      "url": "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
+      "local_file": "E0_2425.csv",
+      "size_bytes": 197110,
+      "downloaded_now": true
+    }
+  ],
+  "fixtures": {
+    "url": "https://www.football-data.co.uk/fixtures.csv",
+    "local_file": "fixtures_upcoming.csv",
+    "size_bytes": 54847,
+    "status": "available"
+  }
+}
