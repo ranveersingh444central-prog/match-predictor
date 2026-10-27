@@ -335,6 +335,21 @@ export const UFCModelLab: React.FC = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Secondary Method Model Callout */}
+        <div style={{ marginTop: '16px', padding: '16px 20px', background: 'var(--bg-deep)', borderRadius: '6px', border: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-warm-gold)', fontWeight: 600 }}>
+              Secondary Task: Finishing Method Classification
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--text-parchment)', marginTop: '2px' }}>
+              Multi-class categorization (Decision, KO/TKO, Submission). Test Accuracy: <strong style={{ color: 'var(--text-ivory)' }}>47.29%</strong> vs Naive Majority Decision Baseline: <strong style={{ color: 'var(--text-ivory)' }}>48.72%</strong>.
+            </div>
+          </div>
+          <span style={{ fontSize: '11px', padding: '4px 10px', borderRadius: '4px', background: 'rgba(194, 166, 118, 0.15)', color: 'var(--accent-warm-gold)', border: '1px solid rgba(194, 166, 118, 0.3)', fontWeight: 600 }}>
+            Exploratory (Baseline Not Beaten)
+          </span>
+        </div>
       </div>
 
       {/* Feature Importance & Calibration Side by Side */}
