@@ -494,3 +494,32 @@ button {
     display: block;
   }
 }
+
+/* Card Utility Alias */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  border-color: var(--border-medium);
+}
+
+/* Loading Spin Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+/* Sport Switcher Button Hover */
+.sport-switch-btn:hover:not(.active-sport) {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-ivory);
+}
+

@@ -6,11 +6,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.endpoints import router as api_router
+from app.api.ufc_endpoints import router as ufc_router
 
 app = FastAPI(
-    title=settings.app_name,
+    title="PITCHIQ Multi-Sport Intelligence Platform",
     version=settings.app_version,
-    description="Football Match Outcome Prediction & Analytics Platform"
+    description="Multi-Sport Match Outcome Prediction & Analytics Platform (Football + UFC/MMA)"
 )
 
 # CORS configuration
@@ -22,8 +23,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API routes under /api
-app.include_router(api_router, prefix="/api")
+# Include Football API routes under /api
+app.include_router(api_router, prefix="/api", tags=["Football Intelligence"])
+
+# Include UFC API routes under /api/ufc
+app.include_router(ufc_router, prefix="/api/ufc", tags=["UFC / MMA Intelligence"])
 
 @app.get("/")
 def root():

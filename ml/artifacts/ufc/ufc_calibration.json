@@ -1,0 +1,26 @@
+[
+  {
+    "predicted_probability_mid": 0.1064,
+    "actual_win_rate": 1.0
+  },
+  {
+    "predicted_probability_mid": 0.283,
+    "actual_win_rate": 0.2439
+  },
+  {
+    "predicted_probability_mid": 0.43,
+    "actual_win_rate": 0.3689
+  },
+  {
+    "predicted_probability_mid": 0.5897,
+    "actual_win_rate": 0.5065
+  },
+  {
+    "predicted_probability_mid": 0.7414,
+    "actual_win_rate": 0.6705
+  },
+  {
+    "predicted_probability_mid": 0.8656,
+    "actual_win_rate": 0.8108
+  }
+]

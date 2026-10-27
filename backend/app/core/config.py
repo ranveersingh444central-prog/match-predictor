@@ -15,13 +15,20 @@ class Settings(BaseModel):
     competition_name: str = "English Premier League"
     competition_code: str = "E0"
     
-    # Paths
+    # Football Paths
     ml_dir: Path = ML_DIR
     raw_data_dir: Path = ML_DIR / "data" / "raw"
     processed_data_dir: Path = ML_DIR / "data" / "processed"
     artifacts_dir: Path = ML_DIR / "artifacts"
     reports_dir: Path = ML_DIR / "reports"
     prediction_history_file: Path = ML_DIR / "data" / "prediction_history.json"
+    
+    # UFC / MMA Paths
+    ufc_raw_data_dir: Path = ML_DIR / "data" / "ufc" / "raw"
+    ufc_processed_data_dir: Path = ML_DIR / "data" / "ufc" / "processed"
+    ufc_artifacts_dir: Path = ML_DIR / "artifacts" / "ufc"
+    ufc_reports_dir: Path = ML_DIR / "reports" / "ufc"
+    ufc_prediction_history_file: Path = ML_DIR / "data" / "ufc" / "prediction_history.json"
     
     # CORS
     cors_origins: list[str] = [

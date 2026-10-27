@@ -1,0 +1,32 @@
+{
+  "dataset_name": "PITCHIQ UFC Canonical Combat Archive",
+  "primary_source": "UFCStats.com (Official Statistics Provider for Ultimate Fighting Championship)",
+  "curator": "Rajeev Warrier (Kaggle UFC Dataset)",
+  "license": "CC0: Public Domain (Open Data)",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "acquisition_timestamp": "2026-10-27T16:50:05.337979Z",
+  "files": {
+    "fights": {
+      "description": "Historical UFC bouts with corner assignments, method of victory, and round stats",
+      "filename": "raw_total_fight_data.csv",
+      "expected_delimiter": ";",
+      "license": "CC0: Public Domain (Kaggle / Rajeev Warrier / UFCStats.com)",
+      "status": "downloaded",
+      "local_file": "raw_total_fight_data.csv",
+      "size_bytes": 2018155,
+      "sha256": "f0b9565fe2baf52b5586df1ff0b2d24a56ad76fecaa74d49d073f4a43db7df99",
+      "source_url": "https://raw.githubusercontent.com/FalkorDB/ufc/main/UFC/data/raw_total_fight_data.csv"
+    },
+    "fighters": {
+      "description": "Fighter biographical profiles including height, reach, stance, DOB, and career baselines",
+      "filename": "raw_fighter_details.csv",
+      "expected_delimiter": ",",
+      "license": "CC0: Public Domain (Kaggle / Rajeev Warrier / UFCStats.com)",
+      "status": "downloaded",
+      "local_file": "raw_fighter_details.csv",
+      "size_bytes": 318416,
+      "sha256": "fb83c27be0d799fd4a2fede2e6465e3870de8e0c1fa8be4b7b0997bfc3e00ee4",
+      "source_url": "https://raw.githubusercontent.com/FalkorDB/ufc/main/UFC/data/raw_fighter_details.csv"
+    }
+  }
+}

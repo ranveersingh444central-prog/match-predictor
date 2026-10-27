@@ -1,0 +1,36 @@
+{
+  "dataset_name": "PITCHIQ UFC Canonical Combat Archive (2026 Refresh)",
+  "primary_source": "UFCStats.com (Official Statistics Provider for Ultimate Fighting Championship)",
+  "curator": "Greco1899 / scrape_ufc_stats automated scraper",
+  "software_license": "GPL-3.0 (Upstream Scraper Code: Greco1899/scrape_ufc_stats)",
+  "software_license_url": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/LICENSE",
+  "data_legal_status": "Factual sports statistics (raw scores and historical fight outcomes). Note: while factual sports statistics are not subject to US copyright under Feist/Motorola, website terms of service on UFCStats.com may govern automated access. No blanket CC0 dedication is claimed for scraped feeds; uncertainty is documented.",
+  "attribution": "Fight statistics and athlete biographical data attributed to UFCStats.com; scraper utility authored by Greco1899.",
+  "acquisition_timestamp": "2026-10-27T19:15:13.199989Z",
+  "date_coverage": {
+    "earliest": "1994-03-11",
+    "latest": "2026-10-24"
+  },
+  "total_raw_bouts": 8962,
+  "total_raw_fighters": 4629,
+  "files": {
+    "fights": {
+      "local_file": "raw_total_fight_data_2026.csv",
+      "size_bytes": 2876175,
+      "sha256": "b599e19631952e729fa06208bd421ae8cdb320fb73ff9e70ee67765bf361a7ae",
+      "source_urls": [
+        "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv",
+        "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_event_details.csv",
+        "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_stats.csv"
+      ]
+    },
+    "fighters": {
+      "local_file": "raw_fighter_details_2026.csv",
+      "size_bytes": 414458,
+      "sha256": "7103f09dac88033c8d1a283ffaa15fc6adc81aae93773494f925d395b2244398",
+      "source_urls": [
+        "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_tott.csv"
+      ]
+    }
+  }
+}

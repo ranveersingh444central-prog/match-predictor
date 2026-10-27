@@ -1,0 +1,107 @@
+{
+  "timestamp": "2026-10-27T19:06:01.056906Z",
+  "champion_model": "Logistic Regression",
+  "dataset_split": {
+    "strategy": "Chronological (1994-2021 Train, 2021-2024 Val, 2024-2026 Test)",
+    "train_samples": 6164,
+    "train_date_range": [
+      "1994-03-11",
+      "2021-09-25"
+    ],
+    "val_samples": 1320,
+    "val_date_range": [
+      "2021-09-25",
+      "2024-04-27"
+    ],
+    "test_samples": 1322,
+    "test_date_range": [
+      "2024-04-27",
+      "2026-10-24"
+    ],
+    "test_class_balance": {
+      "red_wins": 736,
+      "blue_wins": 586,
+      "red_win_rate_pct": 55.67
+    }
+  },
+  "models_evaluated": {
+    "baseline_prior": {
+      "model_name": "Prior Class Baseline",
+      "accuracy": 0.5567,
+      "roc_auc": 0.5,
+      "log_loss": 0.7153,
+      "brier_score": 0.26,
+      "precision": 0.5567,
+      "recall": 1.0,
+      "f1_score": 0.7153
+    },
+    "baseline_red_always": {
+      "model_name": "Always Red Corner Baseline",
+      "accuracy": 0.5567,
+      "brier_score": 0.4433,
+      "log_loss": null,
+      "roc_auc": 0.5
+    },
+    "logistic_regression": {
+      "model_name": "Logistic Regression",
+      "accuracy": 0.6165,
+      "roc_auc": 0.6651,
+      "log_loss": 0.6573,
+      "brier_score": 0.232,
+      "precision": 0.6085,
+      "recall": 0.8723,
+      "f1_score": 0.7169
+    },
+    "random_forest": {
+      "model_name": "Random Forest",
+      "accuracy": 0.6014,
+      "roc_auc": 0.6706,
+      "log_loss": 0.6602,
+      "brier_score": 0.2341,
+      "precision": 0.5894,
+      "recall": 0.9361,
+      "f1_score": 0.7234
+    }
+  },
+  "champion_performance": {
+    "model_name": "Logistic Regression",
+    "accuracy": 0.6165,
+    "roc_auc": 0.6651,
+    "log_loss": 0.6573,
+    "brier_score": 0.232,
+    "precision": 0.6085,
+    "recall": 0.8723,
+    "f1_score": 0.7169
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Blue Win (0)",
+      "Red Win (1)"
+    ],
+    "matrix": [
+      [
+        173,
+        413
+      ],
+      [
+        94,
+        642
+      ]
+    ]
+  },
+  "secondary_method_model": {
+    "task": "Finishing Method Classification (Decision, KO/TKO, Submission)",
+    "accuracy": 0.4729,
+    "total_test_samples": 1328,
+    "class_balance_test": {
+      "Decision": 647,
+      "KO/TKO": 452,
+      "Submission": 229
+    }
+  },
+  "leakage_safeguards": {
+    "historical_rates_isolated": true,
+    "static_profile_averages_in_features": false,
+    "debutant_strategy": "Neutral domain medians + explicit debut indicators"
+  }
+}

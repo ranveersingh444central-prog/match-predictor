@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-10-27T19:04:18.815118Z",
+  "fighters_summary": {
+    "total_raw_fighters": 4629,
+    "clean_fighters_retained": 4620,
+    "height_coverage_pct": 88.87,
+    "reach_coverage_pct": 53.83,
+    "dob_coverage_pct": 83.23,
+    "stance_distribution": {
+      "Orthodox": 2764,
+      "NaN": 1019,
+      "Southpaw": 608,
+      "Switch": 219,
+      "Open Stance": 7,
+      "Sideways": 3
+    }
+  },
+  "bouts_summary": {
+    "total_raw_bouts": 8962,
+    "clean_bouts_retained": 8961,
+    "duplicates_removed": 1,
+    "date_range": {
+      "earliest": "1994-03-11",
+      "latest": "2026-10-24"
+    },
+    "decisive_bouts_for_modeling": 8806,
+    "draw_no_contest_bouts": 155,
+    "class_distribution": {
+      "red_wins": 5633,
+      "blue_wins": 3173,
+      "red_win_rate_pct": 63.97,
+      "blue_win_rate_pct": 36.03
+    },
+    "method_distribution": {
+      "Decision": 4148,
+      "KO/TKO": 2962,
+      "Submission": 1735,
+      "Other": 116
+    },
+    "weight_class_distribution": {
+      "Heavyweight": 1577,
+      "Lightweight": 1491,
+      "Welterweight": 1422,
+      "Middleweight": 1179,
+      "Bantamweight": 1066,
+      "Featherweight": 925,
+      "Flyweight": 718,
+      "Women's Strawweight": 383,
+      "Open Weight": 101,
+      "Catch Weight": 99
+    },
+    "participant_coverage": {
+      "unique_bout_athletes": 2776,
+      "profile_athletes": 4620,
+      "matched_athletes": 2754,
+      "coverage_pct": 99.21
+    }
+  }
+}
