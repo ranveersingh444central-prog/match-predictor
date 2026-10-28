@@ -320,3 +320,62 @@ def test_ufc_unknown_fighter_rejected():
     """Verify predicting an unknown athlete raises a clear error message."""
     with pytest.raises(ValueError, match="not found in official UFC database"):
         ufc_predict.predict_ufc_bout("NonExistentFighter999", "Jon Jones")
+
+def test_ufc_corner_swap_symmetry():
+    """
+    CRITICAL SYMMETRY REGRESSION TEST:
+    Verifies that swapping fighter corner assignments produces exact mathematical symmetry:
+    P(A beats B) == 1 - P(B beats A), and swapping corners preserves fair win probabilities
+    within a strict numerical tolerance (tol < 1e-4).
+    """
+    matchups = [
+        ("Jon Jones", "Daniel Cormier"),
+        ("Dustin Poirier", "Conor McGregor"),
+        ("Francis Ngannou", "Stipe Miocic"),
+    ]
+    for fa, fb in matchups:
+        res_ab = ufc_predict.predict_ufc_bout(fa, fb, corner_a="Red", corner_b="Blue")
+        res_ba = ufc_predict.predict_ufc_bout(fb, fa, corner_a="Red", corner_b="Blue")
+
+        p_a_in_ab = res_ab["probabilities"]["fighter_a"]["probability"]
+        p_b_in_ab = res_ab["probabilities"]["fighter_b"]["probability"]
+        p_b_in_ba = res_ba["probabilities"]["fighter_a"]["probability"]
+        p_a_in_ba = res_ba["probabilities"]["fighter_b"]["probability"]
+
+        # Symmetry assertions
+        assert abs(p_a_in_ab - p_a_in_ba) < 1e-4, f"Asymmetry for {fa}: {p_a_in_ab} vs {p_a_in_ba}"
+        assert abs(p_b_in_ab - p_b_in_ba) < 1e-4, f"Asymmetry for {fb}: {p_b_in_ab} vs {p_b_in_ba}"
+        assert abs((p_a_in_ab + p_b_in_ab) - 1.0) < 1e-5
+        assert abs((p_b_in_ba + p_a_in_ba) - 1.0) < 1e-5
+
+        # Method symmetry
+        for method in ["Decision", "KO/TKO", "Submission"]:
+            m_ab = res_ab["method_probabilities"].get(method, 0.0)
+            m_ba = res_ba["method_probabilities"].get(method, 0.0)
+            assert abs(m_ab - m_ba) < 1e-3, f"Method probability asymmetry for {method}: {m_ab} vs {m_ba}"
+
+def test_ufc_historical_bout_ufc_254_khabib_vs_gaethje():
+    """
+    HISTORICAL BENCHMARK TEST (UFC 254):
+    Verifies that at the time of UFC 254 (2020-10-24), Khabib Nurmagomedov is correctly predicted
+    as the winner over Justin Gaethje with >55% probability, strictly invariant to corner assignment.
+    """
+    # Khabib as Fighter A (Red), Gaethje as Fighter B (Blue)
+    res_k_red = ufc_predict.predict_ufc_bout(
+        "Khabib Nurmagomedov", "Justin Gaethje",
+        target_date="2020-10-24", is_title_bout=True, corner_a="Red", corner_b="Blue"
+    )
+    assert res_k_red["predicted_winner"] == "Khabib Nurmagomedov"
+    assert res_k_red["probabilities"]["fighter_a"]["probability"] > 0.55
+
+    # Corner swap: Gaethje as Fighter A (Red), Khabib as Fighter B (Blue)
+    res_g_red = ufc_predict.predict_ufc_bout(
+        "Justin Gaethje", "Khabib Nurmagomedov",
+        target_date="2020-10-24", is_title_bout=True, corner_a="Red", corner_b="Blue"
+    )
+    assert res_g_red["predicted_winner"] == "Khabib Nurmagomedov"
+    assert res_g_red["probabilities"]["fighter_b"]["probability"] > 0.55
+
+    # Numerical symmetry on historical date
+    assert abs(res_k_red["probabilities"]["fighter_a"]["probability"] - res_g_red["probabilities"]["fighter_b"]["probability"]) < 1e-4
+

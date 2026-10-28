@@ -113,3 +113,51 @@ Unlike chess or board games, football features continuous state spaces, low even
 - In-game muscular injuries occurring after kickoff.
 
 Because these random variables occur **after** kickoff, no pre-match model can foresee them. The Bayes optimal error rate in elite football outcome forecasting is typically bounded between **45% and 55% accuracy**. A model reporting 75%+ accuracy on football match outcomes is virtually guaranteed to suffer from data leakage.
+
+---
+
+## 7. UFC / MMA Subsystem & Symmetrized Inference
+
+### Q12: How is the UFC prediction problem formulated compared to Premier League football?
+**Answer:**
+1. **Binary Classification with Decision Tree Ensembles:** Unlike football ($3$ classes: Home, Draw, Away), UFC outcomes are modeled as **binary classification** ($Y \in \{0, 1\}$: Fighter A Win vs Fighter B Win), with draws/no-contests (~1.8%) filtered out during training.
+2. **Feature Representation:** Uses 33 pre-fight chronological differentials ($\Delta = \mathbf{x}_A - \mathbf{x}_B$), including reach differential, striking output rate (SLpM), takedown defense %, age difference, and rolling win streaks.
+3. **Multi-Output Auxiliary Modeling:** A secondary multi-class classifier predicts the finish method distribution:
+   $$P(\text{Method} \in \{\text{Decision}, \text{KO/TKO}, \text{Submission}\})$$
+
+### Q13: What is the Corner-Swap Invariant, and why is it critical in combat sports?
+**Answer:**
+In competitive MMA, assigning a fighter to the Red or Blue corner is an arbitrary matchmaking convention (typically favoring reigning champions or higher-ranked athletes). 
+
+For any objective machine learning predictor, swapping the input order or corners of two fighters must satisfy **mathematical symmetry**:
+$$P(\text{Fighter } A \text{ beats } B) + P(\text{Fighter } B \text{ beats } A) = 1.0000$$
+$$P_A(A \text{ vs } B) = P_A(B \text{ vs } A)$$
+
+If swapping fighters changes Fighter A's win probability (e.g. from 73% in Red to 53% in Blue), the model is exhibiting **positional matchmaking bias** rather than assessing athletic skill.
+
+### Q14: How does PITCHIQ mathematically eliminate Red-corner bias without discarding the trained model?
+**Answer:**
+We implemented **Dual-Pass Symmetric Inference** at the inference engine level:
+1. **Pass 1:** Evaluate feature vector with Fighter A in Red, Fighter B in Blue $\to [P_{AB}(\text{Blue}), P_{AB}(\text{Red})]$.
+2. **Pass 2:** Evaluate feature vector with Fighter B in Red, Fighter A in Blue $\to [P_{BA}(\text{Blue}), P_{BA}(\text{Red})]$.
+3. **Symmetric Aggregation:**
+   $$P(A) = \frac{P_{AB}(\text{Red}) + P_{BA}(\text{Blue})}{2}$$
+   $$P(B) = \frac{P_{BA}(\text{Red}) + P_{AB}(\text{Blue})}{2}$$
+   $$\sum = P(A) + P(B) \equiv 1.0000$$
+
+This guarantees exact numerical invariance to corner assignment, yielding identical fair probabilities (e.g. Jon Jones = **65.4%**, Daniel Cormier = **34.6%**) regardless of input order.
+
+### Q15: How was the Khabib Nurmagomedov vs Justin Gaethje (UFC 254) benchmark verified?
+**Answer:**
+At UFC 254 (2020-10-24), Khabib defeated Gaethje via submission. Two factors were verified:
+1. **Zero-Leakage Pre-Fight Snapshot:** Passing `target_date="2020-10-24"` calculates pre-fight features strictly *prior* to UFC 254 (Khabib: 12-0 UFC streak, 168-day layoff; Gaethje: 4-fight streak, 413-day layoff).
+2. **Prediction Outcome:** The symmetrized model predicts **Khabib Nurmagomedov** as the winner with **58.95%** win probability (vs Gaethje **41.05%**), strictly invariant whether Khabib is entered in Red or Blue.
+
+### Q16: How does PITCHIQ prevent static profile leakage (career averages) in historical fight predictions?
+**Answer:**
+Standard web scraping yields career-aggregate statistics (e.g., total career SLpM as of 2024 or 2026). If career totals from 2026 are used to predict a bout in 2015, **static profile leakage** occurs.
+
+PITCHIQ eliminates this by:
+1. **Dynamic Cumulative Rate Computation:** Rebuilding striking, takedown, and defense rates dynamically from the chronological history of individual round-by-round bouts strictly occurring before `target_date`.
+2. **Automated Leakage Test (`test_ufc_static_career_averages_isolated_from_historical_features`):** Artificially corrupting static profile averages with extreme values ($999.0$) and verifying that historical pre-fight feature vectors remain 100% bit-for-bit unchanged.
+

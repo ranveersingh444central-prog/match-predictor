@@ -48,14 +48,14 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
 
   // Marquee quick-fill presets
   const presets = [
-    { name: 'Jones vs Cormier', a: 'Jon Jones', b: 'Daniel Cormier', title: true },
-    { name: 'Khabib vs Gaethje', a: 'Khabib Nurmagomedov', b: 'Justin Gaethje', title: true },
-    { name: 'McGregor vs Poirier', a: 'Conor McGregor', b: 'Dustin Poirier', title: false },
-    { name: 'Adesanya vs Whittaker', a: 'Israel Adesanya', b: 'Robert Whittaker', title: true },
-    { name: 'Miocic vs Ngannou', a: 'Stipe Miocic', b: 'Francis Ngannou', title: true }
+    { name: 'Jones vs Cormier', a: 'Jon Jones', b: 'Daniel Cormier', title: true, date: '2026-10-24' },
+    { name: 'Khabib vs Gaethje (UFC 254)', a: 'Khabib Nurmagomedov', b: 'Justin Gaethje', title: true, date: '2020-10-24' },
+    { name: 'McGregor vs Poirier', a: 'Conor McGregor', b: 'Dustin Poirier', title: false, date: '2026-10-24' },
+    { name: 'Adesanya vs Whittaker', a: 'Israel Adesanya', b: 'Robert Whittaker', title: true, date: '2026-10-24' },
+    { name: 'Miocic vs Ngannou', a: 'Stipe Miocic', b: 'Francis Ngannou', title: true, date: '2026-10-24' }
   ];
 
-  const executePrediction = useCallback(async (fa: string, fb: string, title: boolean) => {
+  const executePrediction = useCallback(async (fa: string, fb: string, title: boolean, customDate?: string) => {
     if (fa.trim().toLowerCase() === fb.trim().toLowerCase()) {
       setError('Cannot predict a matchup between the same athlete. Please select two distinct fighters.');
       return;
@@ -64,6 +64,8 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
     setLoading(true);
     setError(null);
 
+    const evalDate = customDate || targetDate;
+
     try {
       const res = await ufcApi.predictMatchup({
         fighter_a: fa.trim(),
@@ -71,7 +73,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
         corner_a: 'Red',
         corner_b: 'Blue',
         is_title_bout: title,
-        target_date: targetDate
+        target_date: evalDate
       });
       setPrediction(res);
     } catch (err: any) {
@@ -139,13 +141,25 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
     executePrediction(fighterA, fighterB, isTitleBout);
   };
 
+  const handleSwapFighters = () => {
+    const nextA = fighterB;
+    const nextB = fighterA;
+    setFighterA(nextA);
+    setFighterB(nextB);
+    setShowDropdownA(false);
+    setShowDropdownB(false);
+    executePrediction(nextA, nextB, isTitleBout, targetDate);
+  };
+
   const handlePresetSelect = (preset: typeof presets[0]) => {
     setFighterA(preset.a);
     setFighterB(preset.b);
     setIsTitleBout(preset.title);
+    const dateToUse = preset.date || '2026-10-24';
+    setTargetDate(dateToUse);
     setShowDropdownA(false);
     setShowDropdownB(false);
-    executePrediction(preset.a, preset.b, preset.title);
+    executePrediction(preset.a, preset.b, preset.title, dateToUse);
   };
 
   return (
@@ -306,7 +320,7 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
               )}
             </div>
 
-            {/* VS Badge */}
+            {/* VS Badge & Corner Swap Action */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -314,22 +328,45 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
               justifyContent: 'center',
               paddingTop: '20px'
             }}>
-              <div style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '50%',
-                background: 'var(--bg-deep)',
-                border: '1px solid var(--border-medium)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: 'var(--font-serif)',
-                fontStyle: 'italic',
-                fontSize: '15px',
-                color: 'var(--text-muted)'
-              }}>
-                VS
-              </div>
+              <button
+                type="button"
+                onClick={handleSwapFighters}
+                title="Swap Fighters & Corners (Tests Prediction Symmetry)"
+                aria-label="Swap Fighters"
+                style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  background: 'var(--bg-deep)',
+                  border: '1px solid var(--border-medium)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  padding: 0
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--accent-warm-gold)';
+                  e.currentTarget.style.transform = 'scale(1.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-medium)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              >
+                <span style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontStyle: 'italic',
+                  fontSize: '15px',
+                  color: 'var(--accent-warm-gold)'
+                }}>
+                  VS
+                </span>
+              </button>
+              <span style={{ fontSize: '10px', color: 'var(--text-dim)', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Swap
+              </span>
             </div>
 
             {/* Fighter B (Blue Corner) */}
@@ -527,12 +564,12 @@ export const FightPredictor: React.FC<FightPredictorProps> = ({ initialFight }) 
                     {prediction.probabilities.fighter_a.name}
                   </span>
                   <span style={{ fontSize: '12px', color: '#E58A88', marginLeft: '6px' }}>
-                    (Red Corner)
+                    ({prediction.probabilities.fighter_a.corner} Corner)
                   </span>
                 </div>
                 <div>
                   <span style={{ fontSize: '12px', color: '#7EC2D4', marginRight: '6px' }}>
-                    (Blue Corner)
+                    ({prediction.probabilities.fighter_b.corner} Corner)
                   </span>
                   <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-ivory)' }}>
                     {prediction.probabilities.fighter_b.name}

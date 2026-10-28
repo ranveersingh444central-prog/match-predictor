@@ -167,42 +167,47 @@ def predict_ufc_bout(
     else:
         eval_date = pd.to_datetime(target_date)
 
-    # Establish corner mapping: Corner A -> Red, Corner B -> Blue (or assigned)
-    if corner_a.lower() == "red":
-        red_name, blue_name = name_a, name_b
-        a_is_red = True
-    else:
-        red_name, blue_name = name_b, name_a
-        a_is_red = False
+    # Symmetric Dual-Pass Feature & Inference Evaluation:
+    # Eliminates artificial red-corner matchmaking bias and guarantees mathematical symmetry:
+    # P(A beats B) + P(B beats A) == 1.0, and P(A vs B) == P(A vs B) invariant to corner entry.
 
-    red_history = history_cache.get(red_name, [])
-    blue_history = history_cache.get(blue_name, [])
-
-    # Pre-fight feature calculation with zero leakage (strictly prior to eval_date)
-    feat_dict = build_single_fight_feature_vector(
-        red_name=red_name,
-        blue_name=blue_name,
+    # Pass 1: Fighter A as Red, Fighter B as Blue
+    feat_ab = build_single_fight_feature_vector(
+        red_name=name_a,
+        blue_name=name_b,
         target_date=eval_date,
-        red_prior_bouts=red_history,
-        blue_prior_bouts=blue_history,
+        red_prior_bouts=history_cache.get(name_a, []),
+        blue_prior_bouts=history_cache.get(name_b, []),
         profiles_dict=profiles_dict,
         is_title_bout=is_title_bout
     )
+    X_ab = pd.DataFrame([feat_ab])[FEATURE_COLUMNS]
 
-    X_input = pd.DataFrame([feat_dict])[FEATURE_COLUMNS]
+    # Pass 2: Fighter B as Red, Fighter A as Blue
+    feat_ba = build_single_fight_feature_vector(
+        red_name=name_b,
+        blue_name=name_a,
+        target_date=eval_date,
+        red_prior_bouts=history_cache.get(name_b, []),
+        blue_prior_bouts=history_cache.get(name_a, []),
+        profiles_dict=profiles_dict,
+        is_title_bout=is_title_bout
+    )
+    X_ba = pd.DataFrame([feat_ba])[FEATURE_COLUMNS]
 
-    # Model inference: predicts P(Red Win = 1)
-    proba = model.predict_proba(X_input)[0]
-    p_blue = float(proba[0])
-    p_red = float(proba[1])
+    # Predict probas across both orientations
+    # model.classes_ is [0, 1] where 1 = Red win, 0 = Blue win
+    proba_ab = model.predict_proba(X_ab)[0]
+    p_red_ab = float(proba_ab[1])   # P(A wins as Red)
+    p_blue_ab = float(proba_ab[0])  # P(B wins as Blue)
 
-    # Assign probabilities back to fighter_a and fighter_b
-    if a_is_red:
-        prob_a = p_red
-        prob_b = p_blue
-    else:
-        prob_a = p_blue
-        prob_b = p_red
+    proba_ba = model.predict_proba(X_ba)[0]
+    p_red_ba = float(proba_ba[1])   # P(B wins as Red)
+    p_blue_ba = float(proba_ba[0])  # P(A wins as Blue)
+
+    # Invariant symmetric win probability for Fighter A and Fighter B
+    prob_a = float((p_red_ab + p_blue_ba) / 2.0)
+    prob_b = float((p_red_ba + p_blue_ab) / 2.0)
 
     # Strict normalization to guarantee exact 100% sum
     total_prob = prob_a + prob_b
@@ -224,14 +229,17 @@ def predict_ufc_bout(
     else:
         confidence = "Competitive Matchup"
 
-    # Secondary Finish Method breakdown (if method model available)
+    # Secondary Finish Method breakdown (symmetric across orientations)
     method_probs = {}
     if method_model is not None:
         try:
-            m_proba = method_model.predict_proba(X_input)[0]
+            m_proba_ab = method_model.predict_proba(X_ab)[0]
+            m_proba_ba = method_model.predict_proba(X_ba)[0]
             m_classes = method_model.classes_
+            m_proba = (m_proba_ab + m_proba_ba) / 2.0
+            sum_m = sum(m_proba) if sum(m_proba) > 0 else 1.0
             for cls_name, p_val in zip(m_classes, m_proba):
-                method_probs[cls_name] = round(float(p_val), 3)
+                method_probs[cls_name] = round(float(p_val / sum_m), 3)
         except Exception:
             method_probs = {"Decision": 0.50, "KO/TKO": 0.33, "Submission": 0.17}
     else:
@@ -295,42 +303,42 @@ def predict_ufc_bout(
         }
     }
 
-    # Top influential factor differentials
+    # Top influential factor differentials based on Fighter A vs Fighter B differentials
     factors = []
-    if abs(feat_dict["reach_diff"]) >= 2.0:
-        adv_fighter = red_name if feat_dict["reach_diff"] > 0 else blue_name
+    if abs(feat_ab["reach_diff"]) >= 2.0:
+        adv_fighter = name_a if feat_ab["reach_diff"] > 0 else name_b
         factors.append({
             "factor": "Reach Advantage",
             "advantage_fighter": adv_fighter,
-            "differential": f"{abs(feat_dict['reach_diff'])} in"
+            "differential": f"{abs(feat_ab['reach_diff'])} in"
         })
-    if abs(feat_dict["slpm_diff"]) >= 0.5:
-        adv_fighter = red_name if feat_dict["slpm_diff"] > 0 else blue_name
+    if abs(feat_ab["slpm_diff"]) >= 0.5:
+        adv_fighter = name_a if feat_ab["slpm_diff"] > 0 else name_b
         factors.append({
             "factor": "Striking Output Rate",
             "advantage_fighter": adv_fighter,
-            "differential": f"{abs(feat_dict['slpm_diff']):.2f} SLpM"
+            "differential": f"{abs(feat_ab['slpm_diff']):.2f} SLpM"
         })
-    if abs(feat_dict["td_def_diff"]) >= 0.10:
-        adv_fighter = red_name if feat_dict["td_def_diff"] > 0 else blue_name
+    if abs(feat_ab["td_def_diff"]) >= 0.10:
+        adv_fighter = name_a if feat_ab["td_def_diff"] > 0 else name_b
         factors.append({
             "factor": "Takedown Defense Differential",
             "advantage_fighter": adv_fighter,
-            "differential": f"{abs(feat_dict['td_def_diff']) * 100:.1f}%"
+            "differential": f"{abs(feat_ab['td_def_diff']) * 100:.1f}%"
         })
-    if abs(feat_dict["age_diff"]) >= 3.0:
-        younger = red_name if feat_dict["age_diff"] < 0 else blue_name
+    if abs(feat_ab["age_diff"]) >= 3.0:
+        younger = name_a if feat_ab["age_diff"] < 0 else name_b
         factors.append({
             "factor": "Youth / Age Differential",
             "advantage_fighter": younger,
-            "differential": f"{abs(feat_dict['age_diff']):.1f} years younger"
+            "differential": f"{abs(feat_ab['age_diff']):.1f} years younger"
         })
-    if abs(feat_dict["win_streak_diff"]) >= 2:
-        streak_adv = red_name if feat_dict["win_streak_diff"] > 0 else blue_name
+    if abs(feat_ab["win_streak_diff"]) >= 2:
+        streak_adv = name_a if feat_ab["win_streak_diff"] > 0 else name_b
         factors.append({
             "factor": "Momentum / Win Streak",
             "advantage_fighter": streak_adv,
-            "differential": f"{int(abs(feat_dict['win_streak_diff']))} fight streak diff"
+            "differential": f"{int(abs(feat_ab['win_streak_diff']))} fight streak diff"
         })
 
     return {

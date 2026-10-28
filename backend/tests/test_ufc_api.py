@@ -245,3 +245,50 @@ def test_ufc_dataset_unavailable_handling():
             degraded_svc.get_fighters()
         assert exc_info.value.status_code == 503
         assert "not available" in exc_info.value.detail.lower()
+
+def test_ufc_predict_corner_swap_symmetry():
+    """Verify that POST /api/ufc/predict yields invariant win probabilities under corner swap."""
+    res_ab = client.post("/api/ufc/predict", json={
+        "fighter_a": "Jon Jones",
+        "fighter_b": "Daniel Cormier",
+        "corner_a": "Red",
+        "corner_b": "Blue",
+        "is_title_bout": True
+    })
+    assert res_ab.status_code == 200
+    data_ab = res_ab.json()
+
+    res_ba = client.post("/api/ufc/predict", json={
+        "fighter_a": "Daniel Cormier",
+        "fighter_b": "Jon Jones",
+        "corner_a": "Red",
+        "corner_b": "Blue",
+        "is_title_bout": True
+    })
+    assert res_ba.status_code == 200
+    data_ba = res_ba.json()
+
+    p_jones_in_ab = data_ab["probabilities"]["fighter_a"]["probability"]
+    p_cormier_in_ab = data_ab["probabilities"]["fighter_b"]["probability"]
+    p_cormier_in_ba = data_ba["probabilities"]["fighter_a"]["probability"]
+    p_jones_in_ba = data_ba["probabilities"]["fighter_b"]["probability"]
+
+    assert abs(p_jones_in_ab - p_jones_in_ba) < 1e-4
+    assert abs(p_cormier_in_ab - p_cormier_in_ba) < 1e-4
+    assert abs((p_jones_in_ab + p_cormier_in_ab) - 1.0) < 1e-5
+
+def test_ufc_predict_ufc_254_historical():
+    """Verify that POST /api/ufc/predict on UFC 254 date (2020-10-24) predicts Khabib winning."""
+    res = client.post("/api/ufc/predict", json={
+        "fighter_a": "Justin Gaethje",
+        "fighter_b": "Khabib Nurmagomedov",
+        "corner_a": "Red",
+        "corner_b": "Blue",
+        "is_title_bout": True,
+        "target_date": "2020-10-24"
+    })
+    assert res.status_code == 200
+    data = res.json()
+    assert data["predicted_winner"] == "Khabib Nurmagomedov"
+    assert data["probabilities"]["fighter_b"]["probability"] > 0.55
+

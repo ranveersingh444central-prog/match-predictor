@@ -3616,5 +3616,407 @@
     "model_version": "PITCHIQ Random Forest Match Predictor",
     "model_training_period": "2021-09-11 to 2024-09-28",
     "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120010",
+    "timestamp": "2026-10-28T12:00:10.828380Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120012",
+    "timestamp": "2026-10-28T12:00:12.673848Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120159",
+    "timestamp": "2026-10-28T12:01:59.690295Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120201",
+    "timestamp": "2026-10-28T12:02:01.150752Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120309",
+    "timestamp": "2026-10-28T12:03:09.947072Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
+  },
+  {
+    "prediction_id": "pred_Ars_Che_20261028120311",
+    "timestamp": "2026-10-28T12:03:11.263295Z",
+    "competition": "Premier League",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "scheduled_date": "2025-05-26",
+    "is_hypothetical": true,
+    "probabilities": {
+      "home_win": {
+        "code": "H",
+        "label": "Home Win",
+        "probability": 44.0,
+        "raw": 0.4402
+      },
+      "draw": {
+        "code": "D",
+        "label": "Draw",
+        "probability": 29.5,
+        "raw": 0.2952
+      },
+      "away_win": {
+        "code": "A",
+        "label": "Away Win",
+        "probability": 26.5,
+        "raw": 0.2646
+      }
+    },
+    "most_likely_outcome": {
+      "code": "H",
+      "label": "Home Win",
+      "probability": 44.0
+    },
+    "key_statistics": {
+      "home_points_last_5": 8.0,
+      "away_points_last_5": 12.0,
+      "home_form": [
+        "D",
+        "L",
+        "D",
+        "W",
+        "W"
+      ],
+      "away_form": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "W"
+      ],
+      "home_goals_scored_last_5": 8.0,
+      "away_goals_scored_last_5": 6.0,
+      "home_goals_conceded_last_5": 7.0,
+      "away_goals_conceded_last_5": 3.0,
+      "home_team_home_ppg": 1.6,
+      "away_team_away_ppg": 1.4,
+      "rest_advantage_days": 0.0,
+      "h2h_summary": {
+        "home_wins": 2,
+        "draws": 1,
+        "away_wins": 0
+      }
+    },
+    "model_version": "PITCHIQ Random Forest Match Predictor",
+    "model_training_period": "2021-09-11 to 2024-09-28",
+    "confidence_note": "Probabilistic estimate based strictly on pre-match historical team form and schedule dynamics. Football match outcomes carry inherent variance."
   }
 ]
